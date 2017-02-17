@@ -75,7 +75,7 @@ public class PlayVideoActivity extends Activity implements View.OnClickListener,
 
     private int maxVolume;
     private ToastController lightController,volumnController;
-//    private static final String mVideoPlayUrl="http://wirrorcdn.jikexueyuan.com/jiuye%2Fvideo%2Fandroidshow.mp4";
+
     private static  String mVideoPlayUrl="http://wirrorcdn.jikexueyuan.com/jiuye%2Fvideo%2Fandroidshow.mp4";
 
 
