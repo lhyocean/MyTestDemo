@@ -1,0 +1,133 @@
+
+1.   onDown(MotionEvent e)：down事件；
+     2.   onSingleTapUp(MotionEvent e)：一次点击up事件；在touch down后又没有滑动
+（onScroll），又没有长按（onLongPress），然后Touchup时触发。
+ 点击一下非常快的（不滑动）Touchup：
+onDown->onSingleTapUp->onSingleTapConfirmed
+          点击一下稍微慢点的（不滑动）Touchup：
+onDown->onShowPress->onSingleTapUp->onSingleTapConfirmed
+     3.   onShowPress(MotionEvent e)：down事件发生而move或则up还没发生前触发该
+事件；Touch了还没有滑动时触发（与onDown，onLongPress）比较onDown只要Touch down一定立刻触发。而Touchdown后过一会没有滑动先触发onShowPress再是onLongPress。所以Touchdown后一直不滑动
+按照onDown->onShowPress->onLongPress这个顺序触发。
+     4.   onLongPress(MotionEvent e)：长按事件；Touch了不移动一直Touch down时触发
+     5.   onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)：滑动手
+势事件；Touch了滑动一点距离后，在ACTION_UP时才会触发
+参数：e1 第1个ACTION_DOWN MotionEvent 并且只有一个；e2 最后一个ACTION_MOVE MotionEvent ；velocityX X轴上的移动速度，像素/秒 ；velocityY Y轴上的移动速度，像素/秒.触发条件：X轴的坐标位移大于FLING_MIN_DISTANCE，且移动速度大于FLING_MIN_VELOCITY个像素/秒
+  6.   onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)：在屏幕上
+拖动事件。无论是用手拖动view，或者是以抛的动作滚动，都会多次触发,这个方法在ACTION_MOVE动作发生时就会触发
+        抛：手指触动屏幕后，稍微滑动后立即松开
+onDown-----》onScroll----》onScroll----》onScroll----》………----->onFling
+        拖动
+onDown------》onScroll----》onScroll------》onFiling
+
+SimpleOnGestureListener类是GestureDetector提供给我们的一个更方便的响应不同手势的类，这个类实现了上述两个接口（但是所有的方法体都是空的），该类是static class，也就是说它实际上是一个外部类。程序员可以在外部继承这个类，重写里面的手势处理方法。
+
+方法步骤
+第一种示例：
+1，通过GestureDetector的构造方法可以将SimpleOnGestureListener对象传递进去，这样GestureDetector能处理不同的手势了。
+public GestureDetector
+(Context context, GestureDetector.OnGestureListener listener)
+
+2，在OnTouchListener的onTouch方法中
+private OnTouchListener gestureTouchListener = new OnTouchListener() {
+               public boolean onTouch(View v, MotionEvent event) {
+             return gDetector.onTouchEvent(event);
+        }
+    };
+第二种示例：
+使用方法
+private GestureDetector mGestureDetector;
+mGestureListener = new BookOnGestureListener();
+构造出来mGestureDetector = new GestureDetector(mGestureListener);
+class BookOnGestureListener implements OnGestureListener {
+同时要public boolean onTouchEvent(MotionEvent event) {
+                        mGestureListener.onTouchEvent(event);
+             }
+
+第三种示例代码
+代码：
+01.private GestureDetector mGestureDetector;
+02.@Override
+03.public void onCreate(Bundle savedInstanceState) {
+04.    super.onCreate(savedInstanceState);
+05.    mGestureDetector = new GestureDetector(this, new LearnGestureListener());
+06.}
+07.@Override
+08.public boolean onTouchEvent(MotionEvent event) {
+09.    if (mGestureDetector.onTouchEvent(event))
+10.        return true;
+11.    else
+12.        return false;
+13.}
+14.class LearnGestureListener extends GestureDetector.SimpleOnGestureListener{
+15.    @Override
+16.    public boolean onSingleTapUp(MotionEvent ev) {
+17.        Log.d("onSingleTapUp",ev.toString());
+18.        return true;
+19.    }
+20.    @Override
+21.    public void onShowPress(MotionEvent ev) {
+22.        Log.d("onShowPress",ev.toString());
+23.    }
+24.    @Override
+25.    public void onLongPress(MotionEvent ev) {
+26.        Log.d("onLongPress",ev.toString());
+27.    }
+28.    @Override
+29.    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+30.        Log.d("onScroll",e1.toString());
+31.        return true;
+32.    }
+33.    @Override
+34.    public boolean onDown(MotionEvent ev) {
+35.        Log.d("onDownd",ev.toString());
+36.        return true;
+37.    }
+38.    @Override
+39.    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+40.        Log.d("d",e1.toString());
+41.        Log.d("e2",e2.toString());
+42.        return true;
+43.    }
+44.}
+
+1，在当前类中创建一个GestureDetector实例。
+private GestureDetector mGestureDetector;
+2，创建一个Listener来实时监听当前面板操作手势。
+class LearnGestureListener extends GestureDetector.SimpleOnGestureListener
+3，在初始化时，将Listener实例关联当前的GestureDetector实例。
+mGestureDetector = new GestureDetector(this, new LearnGestureListener());
+4，利用onTouchEvent方法作为入口检测，通过传递MotionEvent参数来监听操作手势。
+1.mGestureDetector.onTouchEvent(event)
+
+第四种示例代码
+
+private GestureDetector mGestureDetector;
+@Override
+public void onCreate(Bundle savedInstanceState) {
+  super.onCreate(savedInstanceState);
+  mGestureDetector = new GestureDetector(this, new MyGestureListener());
+}
+@Override
+public boolean onTouchEvent(MotionEvent event) {
+ return mGestureDetector.onTouchEvent(event);
+
+}
+class MyGestureListener extends GestureDetector.SimpleOnGestureListener{
+  @Override
+  public boolean onSingleTapUp(MotionEvent ev) {
+    Log.d("onSingleTapUp",ev.toString());
+    return true;
+  }
+  @Override
+  public void onShowPress(MotionEvent ev) {
+    Log.d("onShowPress",ev.toString());
+  }
+  @Override
+  public void onLongPress(MotionEvent ev) {
+    Log.d("onLongPress",ev.toString());
+  }
+…
+}
+基本的内容就是创建一个GestureDetector的对象，传入listener对象，在自己接收到的onTouchEvent中将event传给GestureDetector进行分析，listener会回调给我们相应的动作。其中GestureDetector.SimpleOnGestureListener（Framework帮我们简化了）是实现了上面提到的OnGestureListener和OnDoubleTapListener两个接口的类，我们只需要继承它并重写其中我们关心的回调即可。
+最后，再提一下双击和三击的识别过程：在第一次单击down时，给Hanlder发送了一个延时300ms的消息，如果300ms里，发生了第二次单击的down事件，那么，就认为是双击事件了，并移除之前发送的延时消息。如果300ms后仍没有第二次的down消息，那么就判定为SingleTapConfirmed事件（当然，此时用户的手指应已完成第一次点击的up过程）。三击的判定和双击的判定类似，只是多了一次发送延时消息的过程。

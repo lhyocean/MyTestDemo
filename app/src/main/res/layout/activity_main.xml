@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+    <com.beijing.ocean.multimediademo.view.MyFlowLayout
+        android:background="@color/red_light"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:layout_marginRight="@dimen/dimen_6"
+        android:layout_marginLeft="@dimen/dimen_6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+
+            style="@style/my_btn_style"
+            android:text="播放网络视频"
+            android:id="@+id/btn_play"
+           />
+        <TextView
+            style="@style/my_btn_style"
+            android:text="日期选择器"
+            android:id="@+id/btn_date_picker"
+            />
+        <TextView
+            style="@style/my_btn_style"
+            android:text="RecyclerView_line_hor"
+            android:id="@+id/btn_rec_line_hor"
+            />
+        <TextView
+            style="@style/my_btn_style"
+            android:text="RecyclerView_line_ver"
+            android:id="@+id/btn_rec_line_ver"
+            />
+        <TextView
+            style="@style/my_btn_style"
+            android:text="RecyclerView_grid_hor"
+            android:id="@+id/btn_rec_grid_hor"
+            />
+        <TextView
+            style="@style/my_btn_style"
+            android:text="RecyclerView_grid_ver"
+            android:id="@+id/btn_rec_grid_ver"
+            />
+        <TextView
+            style="@style/my_btn_style"
+            android:text="RecyclerView_fl"
+            android:id="@+id/btn_rec_fl"
+            />
+
+        <TextView
+            style="@style/my_btn_style"
+            android:text="XRecyclerView"
+            android:id="@+id/btn_XRecyclerView"
+            />
+        <TextView
+            style="@style/my_btn_style"
+            android:text="XListView"
+            android:id="@+id/btn_XListView"
+            />
+        <TextView
+            style="@style/my_btn_style"
+            android:text="PhotoViewPager"
+            android:id="@+id/btn_photo_pager"
+            />
+        <TextView
+            style="@style/my_btn_style"
+            android:text="FlowLayout"
+            android:id="@+id/btn_flowLayout"
+            />
+        <TextView
+
+            style="@style/my_btn_style"
+            android:text="Image"
+            android:id="@+id/btn_image"
+            />
+        <TextView
+
+            style="@style/my_btn_style"
+            android:text="hahhahahahhahhahahh"
+
+            />
+
+        <TextView
+
+            style="@style/my_btn_style"
+            android:text="切换URLasdkjjjjjjj gggafsdghkfjsdfhjkasdfjk"
+
+            />
+        <TextView
+
+            style="@style/my_btn_style"
+            android:text="切换URLasdkjjjjjjj gggafsdghkfjsdfhjkasdfjk"
+
+            />
+
+
+    </com.beijing.ocean.multimediademo.view.MyFlowLayout>
+
+    <com.beijing.ocean.multimediademo.view.FlowLayout
+        android:layout_marginRight="@dimen/dimen_6"
+        android:layout_marginLeft="@dimen/dimen_6"
+
+        android:layout_marginTop="@dimen/dimen_20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/my_btn_style"
+            android:text="切换URL"
+            android:id="@+id/btn_changeUrl"
+            />
+
+        <TextView
+            android:id="@+id/btn_changeUrl0"
+            style="@style/my_btn_style"
+            android:text="切换URL"
+
+            />
+
+    </com.beijing.ocean.multimediademo.view.FlowLayout>
+
+
+    <com.beijing.ocean.multimediademo.view.FlowLayout
+
+        android:background="@color/red_light"
+        android:layout_marginRight="@dimen/dimen_6"
+        android:layout_marginLeft="@dimen/dimen_6"
+        app:gravity="left"
+        android:paddingTop="@dimen/dimen_10"
+        android:layout_marginTop="@dimen/dimen_20"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+
+            style="@style/my_btn_style"
+            android:text="切换URLasdkjjjjjjj "
+
+            />
+        <TextView
+            android:id="@+id/tv_asyncHttp"
+            style="@style/my_btn_style"
+            android:text="asyncHttp "
+
+            />
+        <TextView
+            android:id="@+id/tv_okHttp"
+            style="@style/my_btn_style"
+            android:text="okHttp "
+
+            />
+
+        <TextView
+
+            style="@style/my_btn_style"
+            android:text="切换URLasdfjk"
+
+            />
+        <TextView
+
+            style="@style/my_btn_style"
+            android:text="切换URLajsdfhjkasdfjk"
+
+            />
+        <TextView
+
+            style="@style/my_btn_style"
+            android:text="切换URLaj g"
+
+            />
+
+        <TextView
+
+            style="@style/my_btn_style"
+            android:text="切换URjjj"
+
+            />
+        <TextView
+
+            style="@style/my_btn_style"
+            android:text="切换URLkasdfjk"
+
+            />
+        <TextView
+
+            style="@style/my_btn_style"
+            android:text="切换jjjjjj "
+
+            />
+
+        <ImageView
+            android:layout_marginRight="@dimen/dimen_20"
+            android:src="@drawable/corn_white"
+            android:layout_width="@dimen/dimen_100"
+            android:layout_height="@dimen/dimen_100"/>
+        <TextView
+
+            style="@style/my_btn_style"
+            android:text="切换jjjjjj "
+
+            />
+
+    </com.beijing.ocean.multimediademo.view.FlowLayout>
+
+
+    <TextView
+        android:text="问"
+        android:gravity="center"
+        android:id="@+id/tv_color"
+        android:layout_marginLeft="@dimen/dimen_60"
+        android:layout_marginTop="@dimen/dimen_60"
+        android:layout_width="@dimen/dimen_240"
+        android:layout_height="@dimen/dimen_60"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_30"
+        android:layout_marginRight="@dimen/dimen_30"
+        android:stretchColumns="0,1,2,3,4,5,6">
+
+
+        <TableRow
+            android:layout_marginTop="@dimen/dimen_10"
+            android:gravity="center_horizontal"
+            >
+
+            <LinearLayout
+
+                android:gravity="center">
+
+                <TextView
+                    android:background="@drawable/shape_guide_bg_red"
+                    android:layout_width="@dimen/dimen_50"
+                    android:layout_height="@dimen/dimen_50"
+                    android:gravity="center"
+                    android:text="日"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/small_text_size"/>
+            </LinearLayout>
+
+            <LinearLayout
+                 android:layout_height="match_parent"
+                android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="一"
+                android:textColor="@color/color_text"
+                android:textSize="@dimen/small_text_size"
+                />
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="二"
+                android:textColor="@color/color_text"
+                android:textSize="@dimen/small_text_size"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="三"
+                android:textColor="@color/color_text"
+                android:textSize="@dimen/small_text_size"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="四"
+                android:textColor="@color/color_text"
+                android:textSize="@dimen/small_text_size"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="五"
+                android:textColor="@color/color_text"
+                android:textSize="@dimen/small_text_size"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="六"
+                android:textColor="@color/color_text"
+                android:textSize="@dimen/small_text_size"/>
+
+        </TableRow>
+
+
+    </TableLayout>
+
+</LinearLayout>

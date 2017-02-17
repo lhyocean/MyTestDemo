@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="com.beijing.ocean.multimediademo.activity.XlistViewActivity">
+
+    <TextView
+        android:background="@drawable/corn_white"
+        android:gravity="center"
+        android:id="@+id/back"
+        android:text="返回"
+        android:layout_width="@dimen/dimen_240"
+        android:layout_height="@dimen/dimen_70"/>
+    <com.beijing.ocean.multimediademo.view.XListView
+        android:layout_marginTop="@dimen/dimen_30"
+        android:id="@+id/common_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/dimen_10"
+        android:layout_marginRight="@dimen/dimen_10"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@color/white"
+        android:dividerHeight="0dp"
+        android:fadingEdge="none"
+        android:scrollbars="none"
+        ></com.beijing.ocean.multimediademo.view.XListView>
+
+</LinearLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    tools:context="com.beijing.ocean.multimediademo.activity.TabLayoutActivity">
+
+    <!--app:tabGravity="fill"-->
+    <!--app:tabMode="fixed"-->
+    <TextView
+       android:id="@+id/tv_check"
+        android:text="按时打算几点就安静是的话"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_100"/>
+    <android.support.design.widget.TabLayout
+        app:tabMode="scrollable"
+        android:id="@+id/tabs"
+        app:tabIndicatorColor="@color/text_grey_normal"
+        app:tabIndicatorHeight="@dimen/dimen_2"
+        app:tabTextColor="@color/text_deep_black"
+        app:tabSelectedTextColor="@color/red_light"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_100">
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+
+
+</LinearLayout>

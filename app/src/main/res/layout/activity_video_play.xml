@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:tools="http://schemas.android.com/tools"
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:background="@color/white"
+                  android:layout_height="match_parent"
+
+        >
+        <RelativeLayout
+            android:id="@+id/rl"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_460"></RelativeLayout>
+        <RelativeLayout
+
+            android:id="@+id/video_relative"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_460"
+            android:background="#000">
+
+
+            <VideoView
+                android:layout_centerInParent="true"
+                android:id="@+id/video_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center">
+
+            </VideoView>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:id="@+id/ll_back"
+                android:layout_width="@dimen/dimen_80"
+                android:layout_height="@dimen/dimen_80">
+                <ImageView
+                    android:id="@+id/image_left_back"
+                    android:layout_marginTop="@dimen/dimen_10"
+                    android:layout_marginLeft="@dimen/dimen_30"
+                    android:src="@mipmap/backarrow_brown"
+                    android:layout_width="@dimen/dimen_44"
+                    android:layout_height="@dimen/dimen_44"/>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/video_play_middle"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/play_video"
+                android:layout_width="@dimen/dimen_90"
+                android:layout_height="@dimen/dimen_90"/>
+
+            <LinearLayout
+                android:id="@+id/ll_control"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/act_video_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_40"
+                    android:lines="1"
+                    android:text="00:00:00"
+                    android:textColor="@color/text_middle_black"
+                    android:textSize="@dimen/text_28" />
+
+                <SeekBar
+                    android:id="@+id/seek_bar"
+                    android:layout_width="0dp"
+                    android:layout_marginLeft="@dimen/dimen_10"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:max="1000"
+                    android:maxHeight="@dimen/dimen_2"
+                    android:minHeight="@dimen/dimen_2"
+                    android:paddingLeft="@dimen/dimen_30"
+                    android:paddingRight="@dimen/dimen_30"
+                    android:progressDrawable="@drawable/po_seekbar"
+                    android:thumb="@drawable/seekbar_thumb" />
+
+                <TextView
+                    android:id="@+id/act_video_totaltime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dimen_6"
+                    android:lines="1"
+                    android:text="00:00:00"
+                    android:textColor="@color/text_middle_black"
+                    android:textSize="@dimen/text_28" />
+
+                <ImageView
+
+                    android:layout_width="@dimen/dimen_44"
+                    android:layout_height="@dimen/dimen_44"
+                    android:id="@+id/act_video_tofull"
+                    android:layout_marginLeft="@dimen/dimen_10"
+                    android:src="@mipmap/fullscreen" />
+            </LinearLayout>
+        </RelativeLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+

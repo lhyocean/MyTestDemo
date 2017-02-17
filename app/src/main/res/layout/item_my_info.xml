@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:background="@color/white"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_200">
+        <com.beijing.ocean.multimediademo.view.CircleImageView
+            android:id="@+id/head_pic"
+            app:border_color="@color/text_666666"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginLeft="@dimen/dimen_30"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/dimen_160"
+            android:layout_height="@dimen/dimen_160"/>
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/dimen_40"
+            android:layout_marginLeft="@dimen/dimen_30"
+            android:layout_toRightOf="@+id/head_pic"
+            android:id="@+id/ll_name"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+
+                android:textColor="@color/text_666666"
+                android:textSize="@dimen/text_36"
+                android:text="姓名:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="@dimen/dimen_30"
+                android:textColor="@color/text_666666"
+                android:textSize="@dimen/text_36"
+                android:id="@+id/item_my_info_name"
+                android:text="张"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_below="@+id/ll_name"
+            android:layout_marginTop="@dimen/dimen_10"
+            android:layout_marginLeft="@dimen/dimen_30"
+            android:layout_toRightOf="@+id/head_pic"
+            android:id="@+id/ll_des"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/text_666666"
+                android:textSize="@dimen/text_36"
+                android:text="爱好:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="@dimen/dimen_30"
+                android:textColor="@color/text_666666"
+                android:textSize="@dimen/text_36"
+                android:id="@+id/item_my_info_des"
+                android:text="张"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_alignParentBottom="true"
+            android:background="@color/lv_divider"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dimen_30"
+            android:layout_marginRight="@dimen/dimen_30"
+            android:layout_height="@dimen/dimen_2"/>
+
+    </RelativeLayout>
+</LinearLayout>
