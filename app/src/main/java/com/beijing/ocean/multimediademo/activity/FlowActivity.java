@@ -28,6 +28,7 @@ public class FlowActivity extends Activity implements FlowLayout.TagItemClickLis
     @Bind( R.id.back)
     TextView mBack;
 
+
     List<String> texts=new ArrayList<>();
 
     @Override
@@ -48,6 +49,7 @@ public class FlowActivity extends Activity implements FlowLayout.TagItemClickLis
         mFlowLayout.setAdapter(mAdapter);
         mFlowLayout.setItemClickListener(this);
         Log.e("----count",mFlowLayout.getChildCount()+"-fl-");
+        
     }
 
     @Override
