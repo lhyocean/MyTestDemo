@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.beijing.ocean.multimediademo"
+        applicationId "com.beijing.ocean.multmediademo"
         minSdkVersion 18
         targetSdkVersion 23
         versionCode 1
@@ -30,4 +30,5 @@ dependencies {
     compile 'com.uwetrottmann.photoview:library:1.2.4'
     compile 'com.jcodecraeer:xrecyclerview:1.2.7'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+
 }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context="com.beijing.ocean.multimediademo.activity.XlistViewActivity">
+    tools:context="com.beijing.ocean.multmediademo.activity.XlistViewActivity">
 
     <TextView
         android:background="@drawable/corn_white"
@@ -15,7 +15,7 @@
         android:text="返回"
         android:layout_width="@dimen/dimen_240"
         android:layout_height="@dimen/dimen_70"/>
-    <com.beijing.ocean.multimediademo.view.XListView
+    <com.beijing.ocean.multmediademo.view.XListView
         android:layout_marginTop="@dimen/dimen_30"
         android:id="@+id/common_lv"
         android:layout_width="match_parent"
@@ -27,6 +27,6 @@
         android:dividerHeight="0dp"
         android:fadingEdge="none"
         android:scrollbars="none"
-        ></com.beijing.ocean.multimediademo.view.XListView>
+        ></com.beijing.ocean.multmediademo.view.XListView>
 
 </LinearLayout>

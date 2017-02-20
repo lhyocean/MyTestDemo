@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.MyRecActivity">
+    tools:context="com.beijing.ocean.multmediademo.activity.MyRecActivity">
 
     <TextView
         android:layout_gravity="center_horizontal"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.beijing.ocean.multimediademo.activity.FlowActivity">
+    tools:context="com.beijing.ocean.multmediademo.activity.FlowActivity">
 
 
     <TextView
@@ -16,7 +16,7 @@
         android:text="返回"
         android:layout_width="@dimen/dimen_240"
         android:layout_height="@dimen/dimen_60"/>
-    <com.beijing.ocean.multimediademo.view.FlowLayout
+    <com.beijing.ocean.multmediademo.view.FlowLayout
         android:layout_marginTop="@dimen/dimen_60"
         android:layout_marginLeft="@dimen/dimen_20"
         android:layout_marginRight="@dimen/dimen_20"
@@ -24,6 +24,6 @@
         android:id="@+id/my_flow"
         android:layout_height="wrap_content">
 
-    </com.beijing.ocean.multimediademo.view.FlowLayout>
+    </com.beijing.ocean.multmediademo.view.FlowLayout>
 
 </LinearLayout>

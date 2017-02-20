@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <com.beijing.ocean.multimediademo.view.XListView
+    <com.beijing.ocean.multmediademo.view.XListView
 
         android:id="@+id/common_lv"
         android:layout_marginLeft="@dimen/dimen_6"
@@ -14,5 +14,5 @@
         android:scrollbars="none"
         android:divider="@color/white"
         android:dividerHeight="0dp"
-        ></com.beijing.ocean.multimediademo.view.XListView>
+        ></com.beijing.ocean.multmediademo.view.XListView>
 </LinearLayout>

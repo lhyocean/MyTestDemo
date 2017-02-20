@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_200">
-        <com.beijing.ocean.multimediademo.view.CircleImageView
+        <com.beijing.ocean.multmediademo.view.CircleImageView
             android:id="@+id/head_pic"
             app:border_color="@color/text_666666"
             android:src="@mipmap/ic_launcher"

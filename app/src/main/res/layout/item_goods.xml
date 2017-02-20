@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <com.beijing.ocean.multimediademo.view.RoundedImageView
+    <com.beijing.ocean.multmediademo.view.RoundedImageView
         app:corner_radius="@dimen/dimen_6"
         app:border_color1="@color/red"
         app:border_width1="@dimen/dimen_1"

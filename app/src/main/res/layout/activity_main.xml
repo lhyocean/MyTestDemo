@@ -7,8 +7,8 @@
     android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-    <com.beijing.ocean.multimediademo.view.MyFlowLayout
+    tools:context="com.beijing.ocean.multmediademo.MainActivity">
+    <com.beijing.ocean.multmediademo.view.MyFlowLayout
         android:background="@color/red_light"
         android:layout_marginTop="@dimen/dimen_20"
         android:layout_marginRight="@dimen/dimen_6"
@@ -99,9 +99,9 @@
             />
 
 
-    </com.beijing.ocean.multimediademo.view.MyFlowLayout>
+    </com.beijing.ocean.multmediademo.view.MyFlowLayout>
 
-    <com.beijing.ocean.multimediademo.view.FlowLayout
+    <com.beijing.ocean.multmediademo.view.FlowLayout
         android:layout_marginRight="@dimen/dimen_6"
         android:layout_marginLeft="@dimen/dimen_6"
 
@@ -122,10 +122,10 @@
 
             />
 
-    </com.beijing.ocean.multimediademo.view.FlowLayout>
+    </com.beijing.ocean.multmediademo.view.FlowLayout>
 
 
-    <com.beijing.ocean.multimediademo.view.FlowLayout
+    <com.beijing.ocean.multmediademo.view.FlowLayout
 
         android:background="@color/red_light"
         android:layout_marginRight="@dimen/dimen_6"
@@ -206,7 +206,7 @@
 
             />
 
-    </com.beijing.ocean.multimediademo.view.FlowLayout>
+    </com.beijing.ocean.multmediademo.view.FlowLayout>
 
 
     <TextView
