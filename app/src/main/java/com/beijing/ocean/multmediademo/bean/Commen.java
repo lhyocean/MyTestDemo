@@ -182,4 +182,19 @@ public class Commen {
         name=CONTENTS[new Random().nextInt(CONTENTS.length-2)];
         return name;
     }
+
+    public static List<GoodBean> getGoodRandom() {
+        int random=new Random().nextInt(2);
+        List<GoodBean> list=new ArrayList<>();
+        for (int i = 0; i < random; i++) {
+
+            GoodBean user=new GoodBean();
+            user.setGoodDes(CONTENTS[new Random().nextInt(CONTENTS.length-2)]);
+            user.setGoodImg(HEADIMG[new Random().nextInt(HEADIMG.length-2)]);
+            list.add(user);
+        }
+
+        return list;
+    }
+
 }

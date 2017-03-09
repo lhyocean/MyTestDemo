@@ -13,7 +13,10 @@ import com.beijing.ocean.multmediademo.activity.FlowActivity;
 import com.beijing.ocean.multmediademo.activity.ImagePagerActivity;
 import com.beijing.ocean.multmediademo.activity.PlayVideoActivity;
 import com.beijing.ocean.multmediademo.activity.RecyclerActivity;
+import com.beijing.ocean.multmediademo.activity.SQLiteActivity;
 import com.beijing.ocean.multmediademo.activity.TabLayoutActivity;
+import com.beijing.ocean.multmediademo.activity.WebVideoActivity;
+import com.beijing.ocean.multmediademo.activity.WebiframeActivity;
 import com.beijing.ocean.multmediademo.activity.XRecyActivity;
 import com.beijing.ocean.multmediademo.activity.XlistViewActivity;
 import com.beijing.ocean.multmediademo.bean.Commen;
@@ -84,7 +87,7 @@ public class MainActivity extends Activity  {
 
     @OnClick({R.id.btn_play,R.id.btn_date_picker,R.id.btn_rec_line_hor,R.id.btn_rec_line_ver
            ,R.id.btn_rec_grid_hor,R.id.btn_rec_grid_ver,R.id.btn_rec_fl,
-            R.id.btn_XRecyclerView,R.id.btn_flowLayout,R.id.btn_XListView,R.id.btn_photo_pager,R.id.btn_image,R.id.btn_changeUrl,R.id.btn_changeUrl0})
+            R.id.btn_XRecyclerView,R.id.btn_flowLayout,R.id.btn_XListView,R.id.btn_photo_pager,R.id.btn_image,R.id.btn_changeUrl,R.id.btn_changeUrl0,R.id.tv_asyncHttp,R.id.tv_okHttp})
     public void onClick(View v) {
         Intent intent=null;
         switch (v.getId()) {
@@ -154,12 +157,12 @@ public class MainActivity extends Activity  {
                 break;
 
             case R.id.tv_asyncHttp:
-
+                intent=new Intent(MainActivity.this, SQLiteActivity.class);
 
                 break;
             case R.id.tv_okHttp:
 
-
+                intent=new Intent(MainActivity.this, WebiframeActivity.class);
 
 
                 break;

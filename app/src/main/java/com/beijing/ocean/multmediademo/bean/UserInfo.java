@@ -7,6 +7,33 @@ public class UserInfo {
     private String name;
     private String headurl;
     private String des;
+    private int age;
+    private String sex;
+    private String  userid;
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
     public String getName() {
         return name;
@@ -30,5 +57,17 @@ public class UserInfo {
 
     public void setDes(String des) {
         this.des = des;
+    }
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "name='" + name + '\'' +
+                ", headurl='" + headurl + '\'' +
+                ", des='" + des + '\'' +
+                ", age=" + age +
+                ", sex='" + sex + '\'' +
+                ", userid='" + userid + '\'' +
+                '}'+"\n";
     }
 }

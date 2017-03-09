@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.beijing.ocean.multimediademo.R;
 import com.beijing.ocean.multmediademo.bean.Commen;
 import com.beijing.ocean.multmediademo.bean.GoodBean;
+import com.beijing.ocean.multmediademo.recadapter.RecyclerAdapter;
 import com.beijing.ocean.multmediademo.recadapter.RecyclerGoodAdapter;
 import com.beijing.ocean.multmediademo.view.SpacesItemDecoration;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -28,7 +29,8 @@ public class XRecyActivity extends Activity implements XRecyclerView.LoadingList
     XRecyclerView mXRecyclerView;
 
     List<GoodBean> mList=new ArrayList<>();
-    private RecyclerGoodAdapter mAdapter;
+    private RecyclerAdapter mAdapter;
+    private View mView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,7 @@ public class XRecyActivity extends Activity implements XRecyclerView.LoadingList
         mXRecyclerView.setLayoutManager(manager);
         mXRecyclerView.addItemDecoration(new SpacesItemDecoration(5));
 
-        mAdapter = new RecyclerGoodAdapter(mList,XRecyActivity.this);
+        mAdapter = new RecyclerAdapter(mList,XRecyActivity.this);
         mXRecyclerView.setAdapter(mAdapter);
 
         mXRecyclerView.setLoadingListener(this);
@@ -63,21 +65,37 @@ public class XRecyActivity extends Activity implements XRecyclerView.LoadingList
 
                 mXRecyclerView.loadMoreComplete();
                 mXRecyclerView.refreshComplete();
-                List<GoodBean> list= Commen.getGoods();
+//                List<GoodBean> list= Commen.getGoods();
+//
+//                if (list!=null){
+//                    if (isRefresh){
+//                        mList.clear();
+//                    }
+//                    mList.addAll(list);
+//                    mAdapter.notifyDataSetChanged();
+//                    if (list.size()>=10){
+//                        mXRecyclerView.setLoadingMoreEnabled(true);
+//                    }else {
+//                        mXRecyclerView.setLoadingMoreEnabled(false);
+//                    }
+//                }
+//                mAdapter.notifyDataSetChanged();
 
-                if (list!=null){
-                    if (isRefresh){
-                        mList.clear();
-                    }
-                    mList.addAll(list);
-                    mAdapter.notifyDataSetChanged();
-                    if (list.size()>=10){
-                        mXRecyclerView.setLoadingMoreEnabled(true);
-                    }else {
-                        mXRecyclerView.setLoadingMoreEnabled(false);
-                    }
-                }
-                mAdapter.notifyDataSetChanged();
+        List<GoodBean> list= Commen.getGoodRandom();
+        if (list==null||list.size()==0){
+            mList.clear();
+            mView = View.inflate(this, R.layout.foolter_view,null);
+            mXRecyclerView.removeView(mView);
+            mXRecyclerView.addFootView(mView);
+
+            mAdapter.notifyDataSetChanged();
+        }else {
+            mList.clear();
+            mXRecyclerView.removeView(mView);
+            mList.addAll(list);
+            mAdapter.notifyDataSetChanged();
+
+        }
 
     }
 
