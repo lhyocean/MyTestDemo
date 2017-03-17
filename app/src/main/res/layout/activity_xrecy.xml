@@ -15,11 +15,25 @@
         android:layout_width="@dimen/dimen_240"
         android:layout_height="@dimen/dimen_60"/>
 
+
+    <TextView
+        android:background="@drawable/corn_white"
+        android:gravity="center"
+        android:id="@+id/refresh"
+
+        android:text="刷新"
+        android:layout_width="@dimen/dimen_240"
+        android:layout_height="@dimen/dimen_60"/>
+
     <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:layout_marginTop="@dimen/dimen_60"
         android:layout_marginLeft="@dimen/dimen_20"
         android:layout_marginRight="@dimen/dimen_24"
         android:id="@+id/xrec_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.jcodecraeer.xrecyclerview.XRecyclerView>
+        android:layout_height="match_parent"></com.jcodecraeer.xrecyclerview.XRecyclerView>
+
+
+
+
 </LinearLayout>

@@ -79,7 +79,7 @@
             android:id="@+id/btn_image"
             />
         <TextView
-
+            android:id="@+id/btn_XR"
             style="@style/my_btn_style"
             android:text="hahhahahahhahhahahh"
 

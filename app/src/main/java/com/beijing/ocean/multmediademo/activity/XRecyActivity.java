@@ -5,8 +5,10 @@ import android.os.Handler;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.beijing.ocean.multimediademo.R;
 import com.beijing.ocean.multmediademo.bean.Commen;
@@ -28,9 +30,14 @@ public class XRecyActivity extends Activity implements XRecyclerView.LoadingList
     @Bind(R.id.xrec_view)
     XRecyclerView mXRecyclerView;
 
+
+    @Bind(R.id.refresh)
+    TextView mTextView;
+
     List<GoodBean> mList=new ArrayList<>();
     private RecyclerAdapter mAdapter;
     private View mView;
+    private String TAG="--------------------";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +52,7 @@ public class XRecyActivity extends Activity implements XRecyclerView.LoadingList
             }
         });
 
-        GridLayoutManager manager=new GridLayoutManager(XRecyActivity.this,2, LinearLayoutManager.VERTICAL,false);
+        GridLayoutManager manager=new GridLayoutManager(XRecyActivity.this,1, LinearLayoutManager.VERTICAL,false);
         mXRecyclerView.setPullRefreshEnabled(true);
         mXRecyclerView.setLoadingMoreEnabled(true);
         mXRecyclerView.setLayoutManager(manager);
@@ -56,8 +63,30 @@ public class XRecyActivity extends Activity implements XRecyclerView.LoadingList
 
         mXRecyclerView.setLoadingListener(this);
 
+        mAdapter.setClickListener(new RecyclerAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int pos) {
 
+                Toast.makeText(XRecyActivity.this, "点击了===="+pos+"-----", Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "onItemClick: ,"+pos );
+
+            }
+        });
         getDate(true);
+
+
+
+
+        mTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mList.clear();
+
+                mAdapter.notifyDataSetChanged();
+              mXRecyclerView.refresh();
+
+            }
+        });
 
     }
 
@@ -81,21 +110,10 @@ public class XRecyActivity extends Activity implements XRecyclerView.LoadingList
 //                }
 //                mAdapter.notifyDataSetChanged();
 
-        List<GoodBean> list= Commen.getGoodRandom();
-        if (list==null||list.size()==0){
+        List<GoodBean> list= Commen.getGoodsRandom(10);
             mList.clear();
-            mView = View.inflate(this, R.layout.foolter_view,null);
-            mXRecyclerView.removeView(mView);
-            mXRecyclerView.addFootView(mView);
-
-            mAdapter.notifyDataSetChanged();
-        }else {
-            mList.clear();
-            mXRecyclerView.removeView(mView);
             mList.addAll(list);
             mAdapter.notifyDataSetChanged();
-
-        }
 
     }
 

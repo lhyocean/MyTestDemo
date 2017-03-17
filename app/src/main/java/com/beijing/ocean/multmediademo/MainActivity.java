@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.beijing.ocean.multimediademo.R;
+import com.beijing.ocean.multmediademo.activity.HeadRecyActivity;
 import com.beijing.ocean.multmediademo.activity.MyRecActivity;
 import com.beijing.ocean.multmediademo.activity.FlowActivity;
 import com.beijing.ocean.multmediademo.activity.ImagePagerActivity;
@@ -71,8 +72,10 @@ public class MainActivity extends Activity  {
     @Bind(R.id.tv_okHttp)
     TextView tvOk;
     @Bind(R.id.tv_asyncHttp)
-    TextView tvAsync;
 
+    TextView tvAsync;
+    @Bind(R.id.btn_XR)
+   TextView tvXR;
 
 
     @Override
@@ -86,7 +89,7 @@ public class MainActivity extends Activity  {
     }
 
     @OnClick({R.id.btn_play,R.id.btn_date_picker,R.id.btn_rec_line_hor,R.id.btn_rec_line_ver
-           ,R.id.btn_rec_grid_hor,R.id.btn_rec_grid_ver,R.id.btn_rec_fl,
+           ,R.id.btn_rec_grid_hor,R.id.btn_rec_grid_ver,R.id.btn_rec_fl,R.id.btn_XR,
             R.id.btn_XRecyclerView,R.id.btn_flowLayout,R.id.btn_XListView,R.id.btn_photo_pager,R.id.btn_image,R.id.btn_changeUrl,R.id.btn_changeUrl0,R.id.tv_asyncHttp,R.id.tv_okHttp})
     public void onClick(View v) {
         Intent intent=null;
@@ -166,7 +169,11 @@ public class MainActivity extends Activity  {
 
 
                 break;
+            case R.id.btn_XR:
 
+                intent=new Intent(MainActivity.this, HeadRecyActivity.class);
+
+                break;
 
         }
 

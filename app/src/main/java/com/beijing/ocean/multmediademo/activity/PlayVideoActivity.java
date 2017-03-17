@@ -135,6 +135,7 @@ public class PlayVideoActivity extends Activity implements View.OnClickListener,
         int random=new Random().nextInt(Commen.VIDEOURLS.length);
         mVideoPlayUrl= Commen.VIDEOURLS[random];
 
+
         //注册网络监听
         IntentFilter filter = new IntentFilter();
         filter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);

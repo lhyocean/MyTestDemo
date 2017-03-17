@@ -110,6 +110,8 @@
         </activity>
         <activity android:name="com.beijing.ocean.multmediademo.activity.WebiframeActivity">
         </activity>
+        <activity android:name="com.beijing.ocean.multmediademo.activity.HeadRecyActivity">
+        </activity>
     </application>
 
 </manifest>

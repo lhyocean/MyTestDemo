@@ -10,5 +10,11 @@
         android:src="@drawable/ic_pulltorefresh_arrow"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_400"/>
+     <TextView
+         android:text="我是空数据，当列表为空我才会显是"
+         android:gravity="center"
+         android:layout_width="match_parent"
+         android:layout_height="@dimen/dimen_100"/>
+
 
 </LinearLayout>

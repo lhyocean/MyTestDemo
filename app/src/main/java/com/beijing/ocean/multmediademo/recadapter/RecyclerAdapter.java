@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.beijing.ocean.multimediademo.R;
 import com.beijing.ocean.multmediademo.bean.GoodBean;
@@ -19,10 +20,12 @@ import java.util.List;
  * Created by admin on 2016/11/12.
  */
 
-  public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Holder>{
+  public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private List<GoodBean> mData;
     private Context mContext;
     private int type;
+    public static final int HEAD_VIEW=0x00;
+    public static final int BODY_VIEW=0x01;
 
     public int getType() {
         return type;
@@ -38,33 +41,59 @@ import java.util.List;
     }
 
     @Override
-    public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(mContext).inflate(R.layout.item_goods,null);
-        Holder holder=new Holder(view);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        RecyclerView.ViewHolder holder=null;
+        if (viewType==HEAD_VIEW){
+            View view= LayoutInflater.from(mContext).inflate(R.layout.foolter_view,null);
+             holder=new HeadHolder(view);
+
+        }else {
+            View view= LayoutInflater.from(mContext).inflate(R.layout.item_goods,null);
+             holder=new Holder(view);
+        }
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(Holder holder, int position) {
-          if (mData!=null&&mData.get(position)!=null){
+    public int getItemViewType(int position) {
 
-              GoodBean bean=mData.get(position);
-              holder.mLayout.setOnClickListener(new MyOnClickListener(holder.mLayout,position));
-              holder.mTextView.setText(bean.getGoodDes()==null?"":bean.getGoodDes());
-              if (bean.getGoodImg()!=null){
-                  ImageUtil.loadHeadImgNet(bean.getGoodImg(),holder.img);
-              }
+        if (mData==null||(mData!=null&&mData.size()==0)){
+            return HEAD_VIEW;
+        }else {
+            return BODY_VIEW;
+        }
 
-              if (type==4){
+    }
 
-                  holder.mTextView.setHeight(100+(position%3)*40);
-              }
-          }
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
+         if (holder instanceof HeadHolder){
+
+             HeadHolder headHolder= (HeadHolder) holder;
+             headHolder.mLayout.setOnClickListener(new View.OnClickListener() {
+                 @Override
+                 public void onClick(View v) {
+                     Toast.makeText(mContext, "点击了头部", Toast.LENGTH_SHORT).show();
+                 }
+             });
+
+         }else {
+             Holder holder1=(Holder)holder;
+             GoodBean bean=mData.get(position);
+             if (bean!=null){
+                 holder1.mLayout.setOnClickListener(new MyOnClickListener(holder1.mLayout,position));
+                 holder1.mTextView.setText(bean.getGoodDes()==null?"":bean.getGoodDes());
+                 if (bean.getGoodImg()!=null){
+                     ImageUtil.loadHeadImgNet(bean.getGoodImg(),holder1.img);
+                 }
+             }
+         }
     }
 
     @Override
     public int getItemCount() {
-        return mData==null?0:mData.size();
+        return (mData==null||mData.size()==0)?1:mData.size();
     }
 
     class  Holder extends RecyclerView.ViewHolder{
@@ -79,6 +108,17 @@ import java.util.List;
             mTextView= (TextView) itemView.findViewById(R.id.goods_des);
         }
     }
+
+    class HeadHolder extends RecyclerView.ViewHolder{
+         LinearLayout mLayout;
+        public HeadHolder(View view)
+        {
+            super(view);
+            mLayout= (LinearLayout) view.findViewById(R.id.footer_view);
+        }
+    }
+
+
 
     public  interface  ItemClickListener{
         void onItemClick(View view, int pos);
