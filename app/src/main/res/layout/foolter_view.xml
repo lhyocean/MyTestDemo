@@ -6,10 +6,10 @@
               android:layout_height="match_parent">
 
 
-    <ImageView
-        android:src="@drawable/ic_pulltorefresh_arrow"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_400"/>
+     <com.daimajia.slider.library.SliderLayout
+         android:id="@+id/slideLayout"
+         android:layout_width="match_parent"
+         android:layout_height="@dimen/dimen_500"></com.daimajia.slider.library.SliderLayout>
      <TextView
          android:text="我是空数据，当列表为空我才会显是"
          android:gravity="center"

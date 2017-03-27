@@ -3,6 +3,7 @@ package com.beijing.ocean.multmediademo.recadapter;
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +21,12 @@ import java.util.List;
  * Created by admin on 2016/11/12.
  */
 
-  public class RecyclerHeadAdapter extends RecyclerView.Adapter<RecyclerHeadAdapter.Holder>{
+  public class RecyclerHeadAdapter extends RecyclerView.Adapter{
     private List<GoodBean> mData;
     private Context mContext;
     private int type;
     public static final int TYPE_HEADER=0x01;
+    public static final int TYPE_BODY=0x02;
 
 
 
@@ -42,33 +44,54 @@ import java.util.List;
     }
 
     @Override
-    public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(mContext).inflate(R.layout.item_goods,null);
-        Holder holder=new Holder(view);
+    public int getItemViewType(int position) {
+        if (position==0){return TYPE_HEADER;}
+        else
+            return TYPE_BODY;
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        RecyclerView.ViewHolder holder=null;
+        if (viewType==TYPE_BODY){
+            View view= LayoutInflater.from(mContext).inflate(R.layout.item_goods,null);
+            holder=new Holder(view);
+        }else if (viewType==TYPE_HEADER){
+            View view= LayoutInflater.from(mContext).inflate(R.layout.foolter_view,null);
+            holder=new HeadHolder(view);
+        }
+
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(Holder holder, int position) {
-          if (mData!=null&&mData.get(position)!=null){
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-              GoodBean bean=mData.get(position);
-              holder.mLayout.setOnClickListener(new MyOnClickListener(holder.mLayout,position));
-              holder.mTextView.setText(bean.getGoodDes()==null?"":bean.getGoodDes());
-              if (bean.getGoodImg()!=null){
-                  ImageUtil.loadHeadImgNet(bean.getGoodImg(),holder.img);
-              }
+        if (holder instanceof HeadHolder){
 
-              if (type==4){
 
-                  holder.mTextView.setHeight(100+(position%3)*40);
-              }
-          }
+        }else if (holder instanceof Holder){
+            Holder bodyHolder= (Holder) holder;
+
+
+            int location = position - 1;
+            if (mData!=null&&mData.get(location)!=null){
+
+                GoodBean bean=mData.get(location);
+                bodyHolder.mLayout.setOnClickListener(new MyOnClickListener(bodyHolder.mLayout,location));
+                bodyHolder.mTextView.setText(bean.getGoodDes()==null?"":bean.getGoodDes());
+                if (bean.getGoodImg()!=null){
+                    ImageUtil.loadHeadImgNet(bean.getGoodImg(),bodyHolder.img);
+                }
+
+            }
+        }
+
     }
 
     @Override
     public int getItemCount() {
-        return mData==null?0:mData.size();
+        return mData==null?1:mData.size()+1;
     }
 
 
@@ -81,25 +104,39 @@ import java.util.List;
             gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                 @Override
                 public int getSpanSize(int position) {
-                    return ishead(position)?gridLayoutManager.getSpanCount():1;
+                    int rety=ishead(position)?gridLayoutManager.getSpanCount():1;
+                    int  ret=ishead(position)?1:gridLayoutManager.getSpanCount();
+
+                    Log.e("tag", ret+"getSpanSize: ---------------->>>"+rety );
+                    return rety;
+
                 }
             });
+            gridLayoutManager.setSpanCount(gridLayoutManager.getSpanCount());
         }
     }
 
     private boolean ishead(int position) {
         if (position==0){
-            return true;
+              return true;
         }else {
             return false;
         }
     }
 
     @Override
-    public void onViewAttachedToWindow(Holder holder) {
+    public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
 
 
     }
+
+    class HeadHolder extends RecyclerView.ViewHolder{
+
+        public HeadHolder(View view){
+            super(view);
+        }
+    }
+
 
     class  Holder extends RecyclerView.ViewHolder{
 
