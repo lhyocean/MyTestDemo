@@ -33,5 +33,5 @@ dependencies {
     compile files('libs/MobCommons-2017.0216.1054.jar')
     compile 'com.daimajia.slider:library:1.1.5'
     compile files('libs/jsoup-1.6.1.jar')
-    compile 'com.github.ybq:Android-SpinKit:1.0.1'
+    compile 'com.github.ybq:Android-SpinKit:1.1.0'
 }

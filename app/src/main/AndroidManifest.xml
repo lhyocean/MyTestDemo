@@ -114,6 +114,8 @@
         </activity>
         <activity android:name="com.beijing.ocean.multmediademo.activity.CanvasActivity">
         </activity>
+        <activity android:name="com.beijing.ocean.multmediademo.activity.CusListViewActivity">
+        </activity>
     </application>
 
 </manifest>

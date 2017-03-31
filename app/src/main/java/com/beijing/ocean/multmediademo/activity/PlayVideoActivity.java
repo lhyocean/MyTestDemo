@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
@@ -23,6 +24,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -46,7 +49,9 @@ import butterknife.ButterKnife;
  */
 public class PlayVideoActivity extends Activity implements View.OnClickListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener, View.OnTouchListener ,GestureDetector.OnGestureListener, SeekBar.OnSeekBarChangeListener, MediaPlayer.OnInfoListener {
 
-
+    private float mCurBrightness = INVALID_VALUE;
+    private int mCurVolume = INVALID_VALUE;
+    public static final int INVALID_VALUE=-1;
     @Bind(R.id.video_relative)
     RelativeLayout mLayoutVideoContainer;
 
@@ -71,6 +76,12 @@ public class PlayVideoActivity extends Activity implements View.OnClickListener,
     @Bind(R.id.seek_bar)
     SeekBar mseekBarrPlayProgress;
 
+    // 是否是按下的标识，默认为其他动作，true为按下标识，false为其他动作
+    private boolean isDownTouch;
+    // 是否声音控制,默认为亮度控制，true为声音控制，false为亮度控制
+    private boolean isVolume;
+    // 是否横向滑动，默认为纵向滑动，true为横向滑动，false为纵向滑动
+    private boolean isLandscape;
 
 
     private int maxVolume;
@@ -95,6 +106,15 @@ public class PlayVideoActivity extends Activity implements View.OnClickListener,
     LinearLayout llControl;
     @Bind(R.id.rl)
     RelativeLayout  rl;
+    @Bind(R.id.fl_touch_layout)
+    FrameLayout mFlTouchLayout;
+    @Bind(R.id.tv_volume)
+    TextView mTvVolume;
+    @Bind(R.id.tv_brightness)
+     TextView mTvBrightness;
+
+
+
     long delayMillis=1000;
     private  static  final int showDefaultTime=3000;// 控制条显示延时
     private static  final  int hideWaitDialogTimeDelay=10000;//
@@ -136,6 +156,17 @@ public class PlayVideoActivity extends Activity implements View.OnClickListener,
         mVideoPlayUrl= Commen.VIDEOURLS[random];
 
 
+        try {
+            int e = Settings.System.getInt(PlayVideoActivity.this.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS);
+            float progress = 1.0F * (float) e / 255.0F;
+            WindowManager.LayoutParams layout = PlayVideoActivity.this.getWindow().getAttributes();
+            layout.screenBrightness = progress;
+            PlayVideoActivity.this.getWindow().setAttributes(layout);
+        } catch (Settings.SettingNotFoundException var7) {
+            var7.printStackTrace();
+        }
+
+
         //注册网络监听
         IntentFilter filter = new IntentFilter();
         filter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
@@ -153,6 +184,9 @@ public class PlayVideoActivity extends Activity implements View.OnClickListener,
 
     }
     private void hide() {
+        if (mFlTouchLayout!=null){
+            mFlTouchLayout.setVisibility(View.GONE);
+        }
 
         if (!mDragging&&llControl!=null){
             llControl.setVisibility(View.GONE);
@@ -428,11 +462,24 @@ public class PlayVideoActivity extends Activity implements View.OnClickListener,
     @Override
     public boolean onTouch(View v, MotionEvent event) {
 
+        if (event.getAction()==MotionEvent.ACTION_UP){
+            _endGesture();
+        }
+
         return mGestureDetector.onTouchEvent(event);
+    }
+
+    private void _endGesture() {
+        mImagePlayMiddle.setVisibility(llControl.getVisibility());
+        mFlTouchLayout.setVisibility(View.GONE);
+        mCurVolume=INVALID_VALUE;
+        mCurBrightness=INVALID_VALUE;
     }
 
     @Override
     public boolean onDown(MotionEvent e) {
+        isDownTouch=true;
+
         return true;
     }
 
@@ -464,19 +511,17 @@ public class PlayVideoActivity extends Activity implements View.OnClickListener,
         float x1 = e2.getX();
         float y1 = e2.getY();
 
-        Log.i("-----rawX1--","----"+rawX1);
-        Log.i("-----rawY1--","----"+rawY1);
-        Log.i("-----x--","----"+x);
-        Log.i("-----y--","----"+y);
-        Log.i("-----rawX2--","----"+rawX2);
-        Log.i("-----rawY2--","----"+rawY2);
-        Log.i("-----X1--","----"+x1);
-        Log.i("-----y1--","----"+y1);
-        Log.i("----disx","-----"+distanceX);
-        Log.e("----disy","-----"+distanceY);
-
         float dx=Math.abs(distanceX);
         float dy =Math.abs(distanceY);
+
+        if (isDownTouch){
+            isDownTouch=false;
+            isVolume=x>getResources().getDisplayMetrics().widthPixels*0.5f;
+        }else {
+            mFlTouchLayout.setVisibility(View.GONE);
+        }
+
+
         if (dx>dy){
             //代表横向移动
             if (mVideoView.isPlaying()){
@@ -495,6 +540,7 @@ public class PlayVideoActivity extends Activity implements View.OnClickListener,
                         currentPo=dur;
                     }
                 }
+
                 mVideoView.seekTo(currentPo);
                 int max=mseekBarrPlayProgress.getMax();
                 mseekBarrPlayProgress.setProgress(currentPo*max/dur);
@@ -502,38 +548,85 @@ public class PlayVideoActivity extends Activity implements View.OnClickListener,
             }
             ret=true;
         }else if (dx<dy){
-            if (mVideoView.isPlaying()){
-                int currentVoice=mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-                int maxVoice=mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 
-
-                if (rawY1>rawY2){
-                    //上滑
-                    if (currentVoice==15){
-                        currentVoice=15;
-                        Toast.makeText(PlayVideoActivity.this, "已经是最大音量", Toast.LENGTH_SHORT).show();
-                    }else{
-                        currentVoice++;
-                    }
-                    mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,currentVoice,0);
-
-                }else{
-                    //下滑
-                    if (currentVoice==0){
-                        currentVoice=0;
-                        Toast.makeText(PlayVideoActivity.this, "已经是最小音量", Toast.LENGTH_SHORT).show();
-                    }else {
-                        currentVoice--;
-                    }
-                    mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,currentVoice,0);
-
-                }
-                Log.e("---","max---"+maxVoice+"-----curr"+currentVoice);
+            float percent=(y-y1)/mVideoView.getHeight();
+            if (isVolume) {
+                _onVolumeSlide(percent);
+            } else {
+                _onBrightnessSlide(percent);
             }
 
             ret=true;
         }
         return ret;
+    }
+
+    private void _onBrightnessSlide(float percent) {
+        if (mCurBrightness < 0) {
+            mCurBrightness = PlayVideoActivity.this.getWindow().getAttributes().screenBrightness;
+            if (mCurBrightness < 0.0f) {
+                mCurBrightness = 0.5f;
+            } else if (mCurBrightness < 0.01f) {
+                mCurBrightness = 0.01f;
+            }
+        }
+        WindowManager.LayoutParams attributes = PlayVideoActivity.this.getWindow().getAttributes();
+        attributes.screenBrightness = mCurBrightness + percent;
+        if (attributes.screenBrightness > 1.0f) {
+            attributes.screenBrightness = 1.0f;
+        } else if (attributes.screenBrightness < 0.01f) {
+            attributes.screenBrightness = 0.01f;
+        }
+        _setBrightnessInfo(attributes.screenBrightness);
+        PlayVideoActivity.this.getWindow().setAttributes(attributes);
+
+    }
+
+    private void _setBrightnessInfo(float brightness) {
+        mImagePlayMiddle.setVisibility(View.GONE);
+        if (mFlTouchLayout.getVisibility() == View.GONE) {
+            mFlTouchLayout.setVisibility(View.VISIBLE);
+        }
+        mTvVolume.setVisibility(View.GONE);
+        if (mTvBrightness.getVisibility() == View.GONE) {
+            mTvBrightness.setVisibility(View.VISIBLE);
+        }
+        mTvBrightness.setText(Math.ceil(brightness * 100) + "%");
+    }
+
+    // 当前音量
+    // 当前亮度
+
+    private void _onVolumeSlide(float percent) {
+        if (mCurVolume == INVALID_VALUE) {
+            mCurVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+            if (mCurVolume < 0) {
+                mCurVolume = 0;
+            }
+        }
+        int index = (int) (percent * maxVolume) + mCurVolume;
+        if (index > maxVolume) {
+            index = maxVolume;
+        } else if (index < 0) {
+            index = 0;
+        }
+        // 变更声音
+        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, index, 0);
+        // 变更进度条
+        _setVolumeInfo(index);
+    }
+
+    private void _setVolumeInfo(int volume) {
+       mImagePlayMiddle.setVisibility(View.GONE);
+
+        mTvBrightness.setVisibility(View.GONE);
+        if (mFlTouchLayout.getVisibility() == View.GONE) {
+            mFlTouchLayout.setVisibility(View.VISIBLE);
+        }
+        if (mTvVolume.getVisibility() == View.GONE) {
+            mTvVolume.setVisibility(View.VISIBLE);
+        }
+        mTvVolume.setText((volume * 100 / maxVolume) + "%");
     }
 
     @Override
