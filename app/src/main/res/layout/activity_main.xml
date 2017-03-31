@@ -157,9 +157,9 @@
             />
 
         <TextView
-
+            android:id="@+id/my_btn_canvas"
             style="@style/my_btn_style"
-            android:text="切换URLasdfjk"
+            android:text="画图Canvas"
 
             />
         <TextView

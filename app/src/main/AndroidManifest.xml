@@ -112,6 +112,8 @@
         </activity>
         <activity android:name="com.beijing.ocean.multmediademo.activity.HeadRecyActivity">
         </activity>
+        <activity android:name="com.beijing.ocean.multmediademo.activity.CanvasActivity">
+        </activity>
     </application>
 
 </manifest>

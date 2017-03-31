@@ -65,7 +65,8 @@ public class WebiframeActivity extends Activity {
 
 
 
-         String htmlstr=getNewContent(Commen.htmltext2);
+//         String htmlstr=getNewContent(Commen.htmltext2);
+         String htmlstr="http://cw-pre.wuvei.com/h5/gooddetail.html?p=c952227d4fdc4ded978225ecac3fba69";
 
 
         WebSettings ws = mWebView.getSettings();
@@ -82,7 +83,8 @@ public class WebiframeActivity extends Activity {
             }
         });
 
-        mWebView.loadDataWithBaseURL("", htmlstr, "text/html", "UTF-8","");
+        mWebView.loadUrl(htmlstr);
+//        mWebView.loadDataWithBaseURL("", htmlstr, "text/html", "UTF-8","");
 //        mWebView.loadDataWithBaseURL("", Commen.htmltext2, "text/html", "UTF-8","");
 
         mWebView.addJavascriptInterface(new MyTestJS(this),"imagelistner");

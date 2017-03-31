@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.beijing.ocean.multimediademo.R;
+import com.beijing.ocean.multmediademo.activity.CanvasActivity;
 import com.beijing.ocean.multmediademo.activity.HeadRecyActivity;
 import com.beijing.ocean.multmediademo.activity.MyRecActivity;
 import com.beijing.ocean.multmediademo.activity.FlowActivity;
@@ -76,6 +77,8 @@ public class MainActivity extends Activity  {
     TextView tvAsync;
     @Bind(R.id.btn_XR)
    TextView tvXR;
+    @Bind(R.id.my_btn_canvas)
+    TextView tvCanvas;
 
 
     @Override
@@ -90,7 +93,7 @@ public class MainActivity extends Activity  {
 
     @OnClick({R.id.btn_play,R.id.btn_date_picker,R.id.btn_rec_line_hor,R.id.btn_rec_line_ver
            ,R.id.btn_rec_grid_hor,R.id.btn_rec_grid_ver,R.id.btn_rec_fl,R.id.btn_XR,
-            R.id.btn_XRecyclerView,R.id.btn_flowLayout,R.id.btn_XListView,R.id.btn_photo_pager,R.id.btn_image,R.id.btn_changeUrl,R.id.btn_changeUrl0,R.id.tv_asyncHttp,R.id.tv_okHttp})
+            R.id.btn_XRecyclerView,R.id.btn_flowLayout,R.id.btn_XListView,R.id.btn_photo_pager,R.id.btn_image,R.id.btn_changeUrl,R.id.btn_changeUrl0,R.id.tv_asyncHttp,R.id.tv_okHttp,R.id.my_btn_canvas})
     public void onClick(View v) {
         Intent intent=null;
         switch (v.getId()) {
@@ -173,6 +176,11 @@ public class MainActivity extends Activity  {
 
                 intent=new Intent(MainActivity.this, HeadRecyActivity.class);
 
+                break;
+
+            case R.id.my_btn_canvas:
+
+                intent=new Intent(MainActivity.this, CanvasActivity.class);
                 break;
 
         }
