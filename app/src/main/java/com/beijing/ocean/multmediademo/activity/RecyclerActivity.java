@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,7 +15,9 @@ import com.beijing.ocean.multimediademo.R;
 import com.beijing.ocean.multmediademo.bean.Commen;
 import com.beijing.ocean.multmediademo.bean.GoodBean;
 import com.beijing.ocean.multmediademo.recadapter.RecyclerGoodAdapter;
+import com.beijing.ocean.multmediademo.view.MyRecyclerView;
 import com.beijing.ocean.multmediademo.view.SpacesItemDecoration;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +25,15 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class RecyclerActivity extends Activity implements RecyclerGoodAdapter.ItemClickListener {
+public class RecyclerActivity extends Activity implements RecyclerGoodAdapter.ItemClickListener, XRecyclerView.LoadingListener {
     @Bind( R.id.back)
     TextView mBack;
     public static final String MANAGER_TYPE="MANAGER_TYPE";
 
     @Bind(R.id.rec_view)
-    RecyclerView mRecyclerView;
+    MyRecyclerView mRecyclerView;
+    @Bind(R.id.title)
+    TextView title;
 
     private  int type=0;
 
@@ -36,11 +41,17 @@ public class RecyclerActivity extends Activity implements RecyclerGoodAdapter.It
     List<GoodBean> mlist=new ArrayList<>();
     private RecyclerGoodAdapter mAdapter;
 
+
+    private int backAltha=0;
+    private float textAltha=0.0f;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler);
         ButterKnife.bind(this);
+
+
 
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,10 +88,37 @@ public class RecyclerActivity extends Activity implements RecyclerGoodAdapter.It
             mAdapter.setType(type);
             mRecyclerView.setAdapter(mAdapter);
             mAdapter.setClickListener(this);
+            mRecyclerView.setPullRefreshEnabled(true);
+            mRecyclerView.setLoadingMoreEnabled(true);
+            mRecyclerView.setLoadingListener(this);
 
+            if (type==1){
+                mRecyclerView.setScrollViewListener(new MyRecyclerView.ScrollViewListener() {
+                    @Override
+                    public void onScrollChanged(MyRecyclerView scrollView, int distance) {
+                        Log.e("distance","----------------》》》》》"+distance+"");
+
+                        int height=800;
+                        if (distance>height){
+                            textAltha=1.0f;
+                            backAltha=255;
+                            title.setAlpha(textAltha);
+                            title.getBackground().setAlpha(backAltha);
+
+                        }else {
+                            float backA=255*((float)distance/(float)800);
+                            backAltha=(int)backA;
+                            textAltha=(float)distance/(float)800;
+                            title.setAlpha(textAltha);
+                            title.getBackground().setAlpha(backAltha);
+                        }
+
+
+                    }
+                });
+            }
 
         }
-
 
         getDate();
     }
@@ -92,6 +130,15 @@ public class RecyclerActivity extends Activity implements RecyclerGoodAdapter.It
 
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        title.setAlpha(textAltha);
+        title.getBackground().setAlpha(backAltha);
+
+    }
+
     @Override
     public void onItemClick(View view, int pos) {
         if (mlist!=null&&mlist.get(pos)!=null){
@@ -100,8 +147,23 @@ public class RecyclerActivity extends Activity implements RecyclerGoodAdapter.It
 
                 List<String> urls=new ArrayList<>();
                 urls.add(bean.getGoodImg());
-                ImagePagerActivity.startImagePagerActivity(RecyclerActivity.this,urls,0);
+                ImagePagerActivity.startAct(RecyclerActivity.this,urls,0,view);
             }
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        mRecyclerView.loadMoreComplete();
+        mRecyclerView.refreshComplete();
+        getDate();
+    }
+
+    @Override
+    public void onLoadMore() {
+        mRecyclerView.loadMoreComplete();
+        mRecyclerView.refreshComplete();
+        mlist.addAll(Commen.getGoods());
+        mAdapter.notifyDataSetChanged();
     }
 }

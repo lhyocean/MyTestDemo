@@ -116,6 +116,13 @@
         </activity>
         <activity android:name="com.beijing.ocean.multmediademo.activity.CusListViewActivity">
         </activity>
+        <activity android:name="com.beijing.ocean.multmediademo.activity.ExpandableListActivity">
+        </activity>
+        <activity android:name="com.beijing.ocean.multmediademo.activity.LoopWheelActivity"/>
+        <activity android:name="com.beijing.ocean.multmediademo.activity.DragFlowlayoutActivity">
+        </activity>
+        <activity android:name="com.beijing.ocean.multmediademo.activity.DaoMasterActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -16,6 +16,9 @@ import java.util.List;
  * Created by admin on 2016/11/12.
  */
 public class InfoAdapter extends MyBaseAdapter<UserInfo> {
+
+
+
     private List<UserInfo>  mData;
     private Context mContext;
 

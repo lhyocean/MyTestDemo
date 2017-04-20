@@ -28,7 +28,7 @@
             />
         <TextView
             style="@style/my_btn_style"
-            android:text="RecyclerView_line_hor"
+            android:text="测试Viewpager"
             android:id="@+id/btn_rec_line_hor"
             />
         <TextView
@@ -86,9 +86,9 @@
             />
 
         <TextView
-
+            android:id="@+id/btn_expandable"
             style="@style/my_btn_style"
-            android:text="切换URLasdkjjjjjjj gggafsdghkfjsdfhjkasdfjk"
+            android:text="测试ExpandableListView"
 
             />
         <TextView

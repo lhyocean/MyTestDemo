@@ -80,8 +80,7 @@ public class PlayVideoActivity extends Activity implements View.OnClickListener,
     private boolean isDownTouch;
     // 是否声音控制,默认为亮度控制，true为声音控制，false为亮度控制
     private boolean isVolume;
-    // 是否横向滑动，默认为纵向滑动，true为横向滑动，false为纵向滑动
-    private boolean isLandscape;
+
 
 
     private int maxVolume;
@@ -309,12 +308,6 @@ public class PlayVideoActivity extends Activity implements View.OnClickListener,
         }
 
     }
-
-
-
-
-
-
 
     private void initData() {
         imageLeftBack.setOnClickListener(this);

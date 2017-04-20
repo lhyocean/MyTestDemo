@@ -47,6 +47,7 @@ public class ImageAdapter extends PagerAdapter {
                   ImageUtil.loadHeadImgNet(datas.get(position),photoView);
               }
               container.addView(view,0);
+
           }
         return view;
     }

@@ -4,12 +4,14 @@ import android.app.Activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.beijing.ocean.multimediademo.R;
 import com.beijing.ocean.multmediademo.bean.Commen;
 import com.beijing.ocean.multmediademo.bean.UserInfo;
 import com.beijing.ocean.multmediademo.utils.DbOpenHelper;
+import com.beijing.ocean.multmediademo.utils.ImageUtil;
 import com.beijing.ocean.multmediademo.utils.MyDbUtils;
 
 import java.util.Random;
@@ -17,6 +19,7 @@ import java.util.Random;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class SQLiteActivity extends Activity {
 
@@ -30,6 +33,8 @@ public class SQLiteActivity extends Activity {
     TextView tvSearch;
     private MyDbUtils mDbUtils;
     private String[] sexs=new String[]{"男","女"};
+    @Bind(R.id.img_big)
+    ImageView imgBig;
 
 
     @Override
@@ -39,6 +44,9 @@ public class SQLiteActivity extends Activity {
         ButterKnife.bind(this);
 
         mDbUtils=new MyDbUtils(this);
+
+        ImageUtil.loadHeadImgNet(Commen.PHOTOS[0],imgBig);
+        PhotoViewAttacher photoViewAttacher=new PhotoViewAttacher(imgBig);
 
 
     }

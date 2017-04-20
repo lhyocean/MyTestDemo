@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,6 +7,7 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.beijing.ocean.multmediademo.activity.FlowActivity">
+
 
 
     <TextView
@@ -17,6 +18,7 @@
         android:layout_width="@dimen/dimen_240"
         android:layout_height="@dimen/dimen_60"/>
     <com.beijing.ocean.multmediademo.view.FlowLayout
+
         android:layout_marginTop="@dimen/dimen_60"
         android:layout_marginLeft="@dimen/dimen_20"
         android:layout_marginRight="@dimen/dimen_20"
@@ -26,4 +28,17 @@
 
     </com.beijing.ocean.multmediademo.view.FlowLayout>
 
-</LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:clickable="true"
+            android:id="@+id/img_test"
+            android:src="@mipmap/ic_launcher"
+            android:layout_width="@dimen/dimen_200"
+            android:layout_height="@dimen/dimen_200"/>
+
+    </FrameLayout>
+
+</RelativeLayout>

@@ -14,11 +14,25 @@
         android:text="返回"
         android:layout_width="@dimen/dimen_240"
         android:layout_height="@dimen/dimen_60"/>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rec_view"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
+        <com.beijing.ocean.multmediademo.view.MyRecyclerView
+            android:id="@+id/rec_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    </android.support.v7.widget.RecyclerView>
+        </com.beijing.ocean.multmediademo.view.MyRecyclerView>
+
+        <TextView
+            android:background="#0f0"
+            android:textSize="30sp"
+            android:id="@+id/title"
+            android:text="我是标题"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_100"/>
+    </RelativeLayout>
+
 
 </LinearLayout>

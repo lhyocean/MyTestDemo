@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.beijing.ocean.multmediademo.activity.DaoMasterActivity">
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="80dp">
+        <TextView
+            android:id="@+id/tv_creat"
+            style="@style/my_btn_style"
+            android:text="删除数据 "
+
+            />
+
+
+        <TextView
+            android:layout_marginTop="@dimen/dimen_10"
+            android:id="@+id/tv_insert"
+            style="@style/my_btn_style"
+            android:text="数据库插入 "
+
+            />
+
+
+        <TextView
+            android:layout_marginTop="@dimen/dimen_10"
+            android:id="@+id/tv_update"
+            style="@style/my_btn_style"
+            android:text="数据更新 "
+
+            />
+
+
+
+        <TextView
+            android:layout_marginTop="@dimen/dimen_10"
+            android:id="@+id/tv_search"
+            style="@style/my_btn_style"
+            android:text="打印数据 "
+
+            />
+    </LinearLayout>
+
+</RelativeLayout>

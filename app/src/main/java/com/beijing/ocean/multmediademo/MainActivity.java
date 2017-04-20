@@ -10,7 +10,11 @@ import android.widget.TextView;
 import com.beijing.ocean.multimediademo.R;
 import com.beijing.ocean.multmediademo.activity.CanvasActivity;
 import com.beijing.ocean.multmediademo.activity.CusListViewActivity;
+import com.beijing.ocean.multmediademo.activity.DaoMasterActivity;
+import com.beijing.ocean.multmediademo.activity.DragFlowlayoutActivity;
+import com.beijing.ocean.multmediademo.activity.ExpandableListActivity;
 import com.beijing.ocean.multmediademo.activity.HeadRecyActivity;
+import com.beijing.ocean.multmediademo.activity.LoopWheelActivity;
 import com.beijing.ocean.multmediademo.activity.MyRecActivity;
 import com.beijing.ocean.multmediademo.activity.FlowActivity;
 import com.beijing.ocean.multmediademo.activity.ImagePagerActivity;
@@ -82,6 +86,8 @@ public class MainActivity extends Activity  {
     TextView tvCanvas;
     @Bind(R.id.my_btn_customListView)
     TextView tvCustomListView;
+    @Bind(R.id.btn_expandable)
+    TextView tvExpandleList;
 
 
     @Override
@@ -98,7 +104,7 @@ public class MainActivity extends Activity  {
            ,R.id.btn_rec_grid_hor,R.id.btn_rec_grid_ver,R.id.btn_rec_fl,R.id.btn_XR,
             R.id.btn_XRecyclerView,R.id.btn_flowLayout,R.id.btn_XListView,R.id.btn_photo_pager,
             R.id.btn_image,R.id.btn_changeUrl,R.id.btn_changeUrl0,R.id.tv_asyncHttp,R.id.tv_okHttp,
-            R.id.my_btn_canvas,R.id.my_btn_customListView})
+            R.id.my_btn_canvas,R.id.my_btn_customListView,R.id.btn_expandable})
     public void onClick(View v) {
         Intent intent=null;
         switch (v.getId()) {
@@ -114,16 +120,15 @@ public class MainActivity extends Activity  {
 
                 break;
             case R.id.btn_rec_line_hor:
-                intent =new Intent(MainActivity.this, RecyclerActivity.class);
-                intent.putExtra(RecyclerActivity.MANAGER_TYPE,0);
+                intent =new Intent(MainActivity.this, LoopWheelActivity.class);
+
                break;
             case R.id.btn_rec_line_ver:
                 intent =new Intent(MainActivity.this, RecyclerActivity.class);
                 intent.putExtra(RecyclerActivity.MANAGER_TYPE,1);
                 break;
             case R.id.btn_rec_grid_hor:
-                intent =new Intent(MainActivity.this, RecyclerActivity.class);
-                intent.putExtra(RecyclerActivity.MANAGER_TYPE,2);
+                intent =new Intent(MainActivity.this, DaoMasterActivity.class);
                 break;
             case R.id.btn_rec_grid_ver:
                 intent =new Intent(MainActivity.this, RecyclerActivity.class);
@@ -192,6 +197,9 @@ public class MainActivity extends Activity  {
 
                 intent=new Intent(MainActivity.this, CusListViewActivity.class);
 
+                break;
+            case R.id.btn_expandable:
+                intent=new Intent(MainActivity.this, ExpandableListActivity.class);
                 break;
 
         }

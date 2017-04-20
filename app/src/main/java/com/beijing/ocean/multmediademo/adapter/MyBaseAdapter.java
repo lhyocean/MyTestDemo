@@ -12,6 +12,7 @@ import java.util.List;
  */
 public abstract class MyBaseAdapter<T> extends BaseAdapter {
     private List<T> mData;
+
     private Context mContext;
 
     public MyBaseAdapter(List<T> data, Context context) {

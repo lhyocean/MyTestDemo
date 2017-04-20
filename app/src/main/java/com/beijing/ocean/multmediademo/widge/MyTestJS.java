@@ -26,4 +26,9 @@ public class MyTestJS {
         list.add(img);
         ImagePagerActivity.startImagePagerActivity(context,list,0);
     }
+
+    @android.webkit.JavascriptInterface
+    public void copyText() {
+        Log.e("tag", "copyText: "+"-----------------------------------------------" );
+    }
 }

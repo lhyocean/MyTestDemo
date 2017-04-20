@@ -8,6 +8,7 @@
     tools:context="com.beijing.ocean.multmediademo.activity.MyRecActivity">
 
     <TextView
+        android:id="@+id/btn_test"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dimen_60"
         android:layout_marginBottom="@dimen/dimen_60"

@@ -194,4 +194,11 @@
     </com.beijing.ocean.multmediademo.view.FlowLayout>
 
 
+    <ImageView
+
+        android:id="@+id/img_big"
+        android:layout_width="200dp"
+        android:layout_height="200dp"/>
+
+
 </LinearLayout>

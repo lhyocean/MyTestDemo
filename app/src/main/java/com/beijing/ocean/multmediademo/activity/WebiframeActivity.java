@@ -65,8 +65,8 @@ public class WebiframeActivity extends Activity {
 
 
 
-//         String htmlstr=getNewContent(Commen.htmltext2);
-         String htmlstr="http://cw-pre.wuvei.com/h5/gooddetail.html?p=c952227d4fdc4ded978225ecac3fba69";
+         String htmlstr=getNewContent(Commen.htmltext1);
+//         String htmlstr="http://cw-pre.wuvei.com/h5/gooddetail.html?p=c952227d4fdc4ded978225ecac3fba69";
 
 
         WebSettings ws = mWebView.getSettings();
@@ -87,7 +87,7 @@ public class WebiframeActivity extends Activity {
 //        mWebView.loadDataWithBaseURL("", htmlstr, "text/html", "UTF-8","");
 //        mWebView.loadDataWithBaseURL("", Commen.htmltext2, "text/html", "UTF-8","");
 
-        mWebView.addJavascriptInterface(new MyTestJS(this),"imagelistner");
+        mWebView.addJavascriptInterface(new MyTestJS(this),"copyText");
         mWebView.setWebViewClient(new MyWebViewClient());
 
     }
@@ -131,7 +131,7 @@ public class WebiframeActivity extends Activity {
 
             super.onPageFinished(view, url);
             // html加载完成之后，添加监听图片的点击js函数
-            addImageClickListner();
+//            addImageClickListner();
 
         }
 

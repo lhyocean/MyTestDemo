@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/head_continer"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_88"
+                android:background="@color/white"
+    >
+
+    <TextView
+        android:id="@+id/tv_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/dimen_30"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        />
+
+    <RelativeLayout
+        android:id="@+id/img_left_container"
+        android:layout_width="@dimen/dimen_100"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        >
+        <ImageView
+            android:id="@+id/img_left"
+            android:layout_width="@dimen/dimen_44"
+            android:layout_height="@dimen/dimen_44"
+            android:layout_marginLeft="@dimen/dimen_30"
+            android:layout_centerVertical="true"
+
+            />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/titile_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/text_36"
+        android:textColor="@color/text_deep_black"
+        android:lines="1"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:maxLength="17"
+        />
+
+    <ImageView
+        android:id="@+id/img_right"
+        android:layout_width="@dimen/dimen_44"
+        android:layout_height="@dimen/dimen_44"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dimen_30"
+        android:layout_centerVertical="true"
+        />
+
+    <TextView
+        android:id="@+id/tv_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dimen_30"
+        android:visibility="gone"
+        android:layout_centerVertical="true"
+        android:textColor="@color/text_grey"
+        android:textSize="@dimen/text_30"
+        />
+    <View
+        android:id="@+id/line_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1"
+        android:background="@color/line_gray"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        />
+</RelativeLayout>

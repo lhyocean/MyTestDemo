@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <TextView
+        android:paddingLeft="@dimen/dimen_20"
+        android:id="@+id/tv_group_name"
+        android:gravity="center_vertical"
+        android:text="asdhasda"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_80"/>
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/black_deep"
+        android:layout_height="@dimen/dimen_1"/>
+
+</LinearLayout>
