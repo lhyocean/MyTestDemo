@@ -55,8 +55,5 @@ public class DragFlowlayoutActivity extends Activity {
 //            }
 //            mDragFlowLayout.getDragItemManager().addItem(k, texts.get(i));
 //        }
-
-
-
     }
 }
