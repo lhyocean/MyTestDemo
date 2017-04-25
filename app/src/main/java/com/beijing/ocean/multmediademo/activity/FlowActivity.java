@@ -14,6 +14,7 @@ import com.beijing.ocean.multimediademo.R;
 import com.beijing.ocean.multmediademo.adapter.FlowAdapter;
 import com.beijing.ocean.multmediademo.bean.Commen;
 import com.beijing.ocean.multmediademo.view.FlowLayout;
+import com.beijing.ocean.multmediademo.view.custom.MyTitleLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,8 @@ public class FlowActivity extends Activity implements FlowLayout.TagItemClickLis
     FlowLayout mFlowLayout;
     @Bind( R.id.back)
     TextView mBack;
+    @Bind(R.id.title_layout)
+    MyTitleLayout mTitleLayout;
 
     ImageView iv;
     int screenWidth,screenHeight;
@@ -61,6 +64,17 @@ public class FlowActivity extends Activity implements FlowLayout.TagItemClickLis
         Display dis=this.getWindowManager().getDefaultDisplay();
         screenWidth=dis.getWidth();
         screenHeight=dis.getHeight();
+
+        mTitleLayout.setLeftText("asdhggggggggg");
+        mTitleLayout.setRightText("ooo");
+        mTitleLayout.setLeftOnclickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FlowActivity.this.finish();
+            }
+        });
+
+
 
     }
 

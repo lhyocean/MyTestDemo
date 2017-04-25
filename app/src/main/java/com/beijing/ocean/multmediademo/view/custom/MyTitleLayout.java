@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -19,34 +20,47 @@ public class MyTitleLayout extends RelativeLayout{
     TextView titleText;
     TextView rightText;
     ImageView imgLeft,imgRight;
+    private String mTitle;
+
     public MyTitleLayout(Context context) {
         super(context);
-        init();
     }
 
     public MyTitleLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
+
+        initAttr(context,attrs);
+
     }
 
-    public MyTitleLayout(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init();
+    private void initAttr(Context context, AttributeSet attrs) {
+        LayoutInflater.from(context).inflate(R.layout.head_title,this,true);
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.MyTitleLayout);
-        String title = ta.getString(R.styleable.MyTitleLayout_title);
+        mTitle = ta.getString(R.styleable.MyTitleLayout_my_title);
         ta.recycle();
-        if (!TextUtils.isEmpty(title)){
-            titleText.setText(title);
-        }
+
 
     }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        init();
+        if (titleText!=null&&!TextUtils.isEmpty(mTitle)){
+            titleText.setVisibility(VISIBLE);
+            titleText.setText(mTitle);
+        }
+    }
+
     private void init() {
-        View view =inflate(getContext(), R.layout.head_title,null);
-        leftText= (TextView) view.findViewById(R.id.tv_left);
-        titleText=(TextView) view.findViewById(R.id.titile_content);
-        rightText=(TextView) view.findViewById(R.id.tv_right);
-        imgLeft= (ImageView) view.findViewById(R.id.img_left);
-        imgRight= (ImageView) view.findViewById(R.id.img_right);
+
+        leftText= (TextView) findViewById(R.id.tv_left);
+        titleText=(TextView) findViewById(R.id.titile_content);
+        rightText=(TextView) findViewById(R.id.tv_right);
+        imgLeft= (ImageView) findViewById(R.id.img_left);
+        imgRight= (ImageView) findViewById(R.id.img_right);
+
     }
 
     public TextView getLeftText() {
@@ -70,7 +84,29 @@ public class MyTitleLayout extends RelativeLayout{
     }
 
     public void setLeftText(CharSequence str){
+        if (leftText==null){
+            return;
+        }
+        if (!(leftText.getVisibility()==VISIBLE)){
+            leftText.setVisibility(VISIBLE);
+        }
         this.leftText.setText(str);
+    }
+    public void setRightText(CharSequence str){
+        if (rightText==null){
+            return;
+        }
+        if (!(rightText.getVisibility()==VISIBLE)){
+            rightText.setVisibility(VISIBLE);
+        }
+        this.rightText.setText(str);
+    }
+    public void setLeftOnclickListener(OnClickListener listener){
+
+        if (leftText!=null&&listener!=null){
+            this.leftText.setOnClickListener(listener);
+        }
+
     }
 
 }

@@ -10,7 +10,13 @@
 
 
 
+    <com.beijing.ocean.multmediademo.view.custom.MyTitleLayout
+        android:id="@+id/title_layout"
+        app:my_title="flowLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_100"></com.beijing.ocean.multmediademo.view.custom.MyTitleLayout>
     <TextView
+        android:layout_below="@+id/title_layout"
         android:background="@drawable/corn_white"
         android:gravity="center"
         android:id="@+id/back"
@@ -19,7 +25,7 @@
         android:layout_height="@dimen/dimen_60"/>
     <com.beijing.ocean.multmediademo.view.FlowLayout
 
-        android:layout_marginTop="@dimen/dimen_60"
+       android:layout_below="@+id/back"
         android:layout_marginLeft="@dimen/dimen_20"
         android:layout_marginRight="@dimen/dimen_20"
         android:layout_width="match_parent"

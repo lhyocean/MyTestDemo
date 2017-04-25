@@ -47,7 +47,7 @@
     </declare-styleable>
 
     <declare-styleable name="MyTitleLayout">
-        <attr name="title" format="string"/>
+        <attr name="my_title" format="string"/>
     </declare-styleable>
 
 </resources>
