@@ -1,10 +1,15 @@
 package com.beijing.ocean.multmediademo.activity;
 
 import android.app.Activity;
+import android.graphics.Canvas;
 import android.os.Handler;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.support.v7.widget.helper.ItemTouchUIUtil;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -16,6 +21,7 @@ import com.beijing.ocean.multmediademo.bean.GoodBean;
 import com.beijing.ocean.multmediademo.recadapter.RecyclerAdapter;
 import com.beijing.ocean.multmediademo.recadapter.RecyclerGoodAdapter;
 import com.beijing.ocean.multmediademo.view.SpacesItemDecoration;
+import com.jcodecraeer.xrecyclerview.ItemTouchHelperAdapter;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.ArrayList;
@@ -60,7 +66,8 @@ public class XRecyActivity extends Activity implements XRecyclerView.LoadingList
 
         mAdapter = new RecyclerAdapter(mList,XRecyActivity.this);
         mXRecyclerView.setAdapter(mAdapter);
-
+        ItemTouchHelper helper=new ItemTouchHelper(callBack);
+        helper.attachToRecyclerView(mXRecyclerView);
         mXRecyclerView.setLoadingListener(this);
 
         mAdapter.setClickListener(new RecyclerAdapter.ItemClickListener() {
@@ -89,6 +96,7 @@ public class XRecyActivity extends Activity implements XRecyclerView.LoadingList
         });
 
     }
+
 
     private void getDate(final boolean isRefresh) {
 
@@ -137,4 +145,54 @@ public class XRecyActivity extends Activity implements XRecyclerView.LoadingList
             }
         },3000);
     }
+
+    private ItemTouchHelper.Callback callBack=new ItemTouchHelper.Callback() {
+        @Override
+        public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+            int dragFlags = 0, swipeFlags = 0;
+            if (recyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager) {
+                dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
+            } else if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
+                dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
+                //设置侧滑方向为从左到右和从右到左都可以
+                swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
+            }
+            return makeMovementFlags(dragFlags, swipeFlags);
+        }
+
+        @Override
+        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+            if (viewHolder.getItemViewType() != target.getItemViewType()) {
+                return false;
+            } else {
+                mAdapter.onItemDragMoving(viewHolder, target);
+                return true;//返回true表示执行拖动
+            }
+        }
+
+        @Override
+        public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+
+
+            int position =viewHolder.getAdapterPosition()-1;
+            Log.e("AppLog","-----"+position);
+            if (position>=0&&position<=mAdapter.getData().size()){
+                mAdapter.getData().remove(position);
+                mAdapter.notifyItemRemoved(position);
+            }
+
+        }
+
+        @Override
+        public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            if(actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+                //滑动时改变Item的透明度
+                final float alpha = 1 - Math.abs(dX) / (float)viewHolder.itemView.getWidth();
+                viewHolder.itemView.setAlpha(alpha);
+                viewHolder.itemView.setTranslationX(dX);
+            }
+        }
+
+    };
 }

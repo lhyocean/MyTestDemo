@@ -7,7 +7,7 @@
               android:layout_height="match_parent">
 
     <LinearLayout
-        android:padding="@dimen/dimen_6"
+        android:padding="@dimen/dimen_10"
         android:id="@+id/ll_container"
         android:background="@drawable/corn_white"
         android:layout_gravity="center_horizontal"
@@ -15,16 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <com.beijing.ocean.multmediademo.view.RoundedImageView
-        app:corner_radius="@dimen/dimen_6"
-        app:border_color1="@color/red"
-        app:border_width1="@dimen/dimen_1"
+    <com.beijing.ocean.multmediademo.view.CircleImageView
 
         android:layout_gravity="center_horizontal"
         android:id="@+id/good_img"
         android:src="@mipmap/ic_launcher"
-        android:layout_width="@dimen/dimen_300"
-        android:layout_height="@dimen/dimen_350"/>
+        android:layout_width="@dimen/dimen_100"
+        android:layout_height="@dimen/dimen_100"/>
     <TextView
         android:layout_marginTop="@dimen/dimen_10"
         android:id="@+id/goods_des"

@@ -14,6 +14,7 @@ import com.beijing.ocean.multmediademo.bean.GoodBean;
 import com.beijing.ocean.multmediademo.utils.ImageUtil;
 import com.beijing.ocean.multmediademo.view.RoundedImageView;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -26,6 +27,14 @@ import java.util.List;
     private int type;
     public static final int HEAD_VIEW=0x00;
     public static final int BODY_VIEW=0x01;
+
+    public List<GoodBean> getData() {
+        return mData;
+    }
+
+    public void setData(List<GoodBean> data) {
+        mData = data;
+    }
 
     public int getType() {
         return type;
@@ -96,6 +105,25 @@ import java.util.List;
         return (mData==null||mData.size()==0)?1:mData.size();
     }
 
+    public void onItemDragMoving(RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+        int from = getViewHolderPosition(viewHolder);
+        int to = getViewHolderPosition(target);
+
+        if (from < to) {
+            for (int i = from; i < to; i++) {
+                Collections.swap(getData(), i, i + 1);
+            }
+        } else {
+            for (int i = from; i > to; i--) {
+                Collections.swap(getData(), i, i - 1);
+            }
+        }
+        notifyItemMoved(viewHolder.getAdapterPosition(), target.getAdapterPosition());
+
+    }
+    public int getViewHolderPosition(RecyclerView.ViewHolder viewHolder) {
+        return viewHolder.getAdapterPosition() - (0 + 1);
+    }
     class  Holder extends RecyclerView.ViewHolder{
 
         private LinearLayout mLayout;

@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -74,7 +75,7 @@ public class RecyclerActivity extends Activity implements RecyclerGoodAdapter.It
                 mManager=new GridLayoutManager(RecyclerActivity.this,2,LinearLayoutManager.HORIZONTAL,false);
                 break;
             case 3:
-                mManager=new GridLayoutManager(RecyclerActivity.this,2,LinearLayoutManager.VERTICAL,false);
+                mManager=new GridLayoutManager(RecyclerActivity.this,4,LinearLayoutManager.VERTICAL,false);
                 break;
             case 4:
                  mManager=new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
@@ -88,10 +89,11 @@ public class RecyclerActivity extends Activity implements RecyclerGoodAdapter.It
             mAdapter.setType(type);
             mRecyclerView.setAdapter(mAdapter);
             mAdapter.setClickListener(this);
-            mRecyclerView.setPullRefreshEnabled(true);
-            mRecyclerView.setLoadingMoreEnabled(true);
+            mRecyclerView.setPullRefreshEnabled(false);
+            mRecyclerView.setLoadingMoreEnabled(false);
             mRecyclerView.setLoadingListener(this);
-
+            ItemTouchHelper helper=new ItemTouchHelper(callBack);
+            helper.attachToRecyclerView(mRecyclerView);
             if (type==1){
                 mRecyclerView.setScrollViewListener(new MyRecyclerView.ScrollViewListener() {
                     @Override
@@ -166,4 +168,43 @@ public class RecyclerActivity extends Activity implements RecyclerGoodAdapter.It
         mlist.addAll(Commen.getGoods());
         mAdapter.notifyDataSetChanged();
     }
+
+
+    private ItemTouchHelper.Callback callBack=new ItemTouchHelper.Callback() {
+        @Override
+        public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+            int dragFlags = 0, swipeFlags = 0;
+            if (recyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager) {
+                dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
+
+            } else if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
+                // 拖拽任何方向都可以
+                dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN| ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
+                //设置侧滑方向为从左到右和从右到左都可以
+                swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
+            }
+            return makeMovementFlags(dragFlags, swipeFlags);
+        }
+
+        @Override
+        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+            if (viewHolder.getItemViewType() != target.getItemViewType()) {
+                return false;
+            } else {
+                mAdapter.onItemDragMoving(viewHolder, target);
+                return true;//返回true表示执行拖动
+            }
+        }
+
+        @Override
+        public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+
+
+            int position =viewHolder.getAdapterPosition()-1;
+
+                mAdapter.getData().remove(position);
+                mAdapter.notifyDataSetChanged();
+
+        }
+    };
 }

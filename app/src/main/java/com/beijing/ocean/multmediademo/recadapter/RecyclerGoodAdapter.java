@@ -11,8 +11,10 @@ import android.widget.TextView;
 import com.beijing.ocean.multimediademo.R;
 import com.beijing.ocean.multmediademo.bean.GoodBean;
 import com.beijing.ocean.multmediademo.utils.ImageUtil;
+import com.beijing.ocean.multmediademo.view.CircleImageView;
 import com.beijing.ocean.multmediademo.view.RoundedImageView;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -35,6 +37,14 @@ import java.util.List;
     public RecyclerGoodAdapter(List<GoodBean> data, Context context) {
         mData = data;
         mContext = context;
+    }
+
+    public List<GoodBean> getData() {
+        return mData;
+    }
+
+    public void setData(List<GoodBean> data) {
+        mData = data;
     }
 
     @Override
@@ -67,15 +77,34 @@ import java.util.List;
         return mData==null?0:mData.size();
     }
 
+    public void onItemDragMoving(RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+        int from = getViewHolderPosition(viewHolder);
+        int to = getViewHolderPosition(target);
+
+        if (from < to) {
+            for (int i = from; i < to; i++) {
+                Collections.swap(getData(), i, i + 1);
+            }
+        } else {
+            for (int i = from; i > to; i--) {
+                Collections.swap(getData(), i, i - 1);
+            }
+        }
+        notifyItemMoved(viewHolder.getAdapterPosition(), target.getAdapterPosition());
+    }
+    public int getViewHolderPosition(RecyclerView.ViewHolder viewHolder) {
+        return viewHolder.getAdapterPosition() - 1;
+    }
+
     class  Holder extends RecyclerView.ViewHolder{
 
         private LinearLayout mLayout;
-        private RoundedImageView img;
+        private CircleImageView img;
         private TextView mTextView;
         public Holder(View itemView) {
             super(itemView);
             mLayout= (LinearLayout) itemView.findViewById(R.id.ll_container);
-            img= (RoundedImageView) itemView.findViewById(R.id.good_img);
+            img= (CircleImageView) itemView.findViewById(R.id.good_img);
             mTextView= (TextView) itemView.findViewById(R.id.goods_des);
         }
     }
