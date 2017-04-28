@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.beijing.ocean.multimediademo.R;
 import com.beijing.ocean.multmediademo.activity.CanvasActivity;
+import com.beijing.ocean.multmediademo.activity.CollapsingToolbarLayoutActivity;
 import com.beijing.ocean.multmediademo.activity.CusListViewActivity;
 import com.beijing.ocean.multmediademo.activity.DaoMasterActivity;
 import com.beijing.ocean.multmediademo.activity.DragFlowlayoutActivity;
@@ -67,8 +68,6 @@ public class MainActivity extends Activity  {
     @Bind(R.id.btn_rec_fl)
     TextView mTvRecFl;
     List<String> urls=new ArrayList<>();
-    @Bind(R.id.tv_color)
-    TextView tvColor;
     @Bind(R.id.btn_image)
     TextView tvImg;
     @Bind(R.id.btn_changeUrl)
@@ -88,6 +87,8 @@ public class MainActivity extends Activity  {
     TextView tvCustomListView;
     @Bind(R.id.btn_expandable)
     TextView tvExpandleList;
+    @Bind(R.id.btn_CollapsingToolbarLayout)
+    TextView tvCollapsingToolbarLayout;
 
 
     @Override
@@ -104,7 +105,7 @@ public class MainActivity extends Activity  {
            ,R.id.btn_rec_grid_hor,R.id.btn_rec_grid_ver,R.id.btn_rec_fl,R.id.btn_XR,
             R.id.btn_XRecyclerView,R.id.btn_flowLayout,R.id.btn_XListView,R.id.btn_photo_pager,
             R.id.btn_image,R.id.btn_changeUrl,R.id.btn_changeUrl0,R.id.tv_asyncHttp,R.id.tv_okHttp,
-            R.id.my_btn_canvas,R.id.my_btn_customListView,R.id.btn_expandable})
+            R.id.my_btn_canvas,R.id.my_btn_customListView,R.id.btn_expandable,R.id.btn_CollapsingToolbarLayout})
     public void onClick(View v) {
         Intent intent=null;
         switch (v.getId()) {
@@ -202,6 +203,10 @@ public class MainActivity extends Activity  {
                 intent=new Intent(MainActivity.this, ExpandableListActivity.class);
                 break;
 
+            case R.id.btn_CollapsingToolbarLayout:
+
+                intent =new Intent(MainActivity.this,CollapsingToolbarLayoutActivity.class);
+                break;
         }
 
         if (intent!=null){

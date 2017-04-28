@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -127,12 +128,12 @@ import java.util.List;
     class  Holder extends RecyclerView.ViewHolder{
 
         private LinearLayout mLayout;
-        private RoundedImageView img;
+        private ImageView img;
         private TextView mTextView;
         public Holder(View itemView) {
             super(itemView);
             mLayout= (LinearLayout) itemView.findViewById(R.id.ll_container);
-            img= (RoundedImageView) itemView.findViewById(R.id.good_img);
+            img= (ImageView) itemView.findViewById(R.id.good_img);
             mTextView= (TextView) itemView.findViewById(R.id.goods_des);
         }
     }

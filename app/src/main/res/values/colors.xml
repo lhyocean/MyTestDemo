@@ -180,6 +180,7 @@
     <color name="topbar_color">#8EE2D3</color>
     <color name="price">#e44f4f</color>
     <color name="grey_light">#50000000</color>
+    <color name="bg_Black">#000</color>
 
 
 </resources>
