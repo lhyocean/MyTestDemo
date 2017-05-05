@@ -52,7 +52,7 @@
         <activity
             android:name="com.beijing.ocean.multmediademo.activity.ImagePagerActivity"
             android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Black.NoTitleBar">
+            android:theme="@style/YourTheme">
         </activity>
         <activity android:name="com.beijing.ocean.multmediademo.activity.FlowActivity">
         </activity>

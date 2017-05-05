@@ -13,6 +13,7 @@ import com.beijing.ocean.multimediademo.R;
 import com.beijing.ocean.multmediademo.adapter.vpPageAdapter.OrderPagerAdapter;
 import com.beijing.ocean.multmediademo.base.BaseFragment;
 import com.beijing.ocean.multmediademo.fragment.AFragment;
+import com.beijing.ocean.multmediademo.view.ShapeIndicatorView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,11 +24,13 @@ public class TabLayoutActivity extends FragmentActivity {
     List<BaseFragment> fragments=new ArrayList<>();
     private TabLayout mTablayout;
     private ViewPager mPager;
+    private ShapeIndicatorView mShapeIndicatorView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_layout);
+
 
        if (tabNames!=null&&tabNames.size()>0){
            tabNames.clear();
@@ -38,7 +41,7 @@ public class TabLayoutActivity extends FragmentActivity {
         View viewById = findViewById(R.id.tv_check);
         mTablayout = (TabLayout) findViewById(R.id.tabs);
         mPager = (ViewPager) findViewById(R.id.view_pager);
-
+        mShapeIndicatorView = (ShapeIndicatorView) findViewById(R.id.custom_indicator);
         if (tabNames!=null&&tabNames.size()>0&&fragments!=null&&fragments.size()==0){
 
 
@@ -56,6 +59,10 @@ public class TabLayoutActivity extends FragmentActivity {
         mPager.setAdapter(adapter);
 
         mTablayout.setupWithViewPager(mPager);
+
+        mShapeIndicatorView.setupWithTabLayout(mTablayout);
+        mShapeIndicatorView.setupWithViewPager(mPager);
+
 
         viewById.setOnClickListener(new View.OnClickListener() {
             @Override

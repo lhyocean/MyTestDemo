@@ -16,6 +16,19 @@
         android:text="按时打算几点就安静是的话"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_100"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_100">
+
+
+    <com.beijing.ocean.multmediademo.view.ShapeIndicatorView
+        android:id="@+id/custom_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:fullColor="#0ff"
+
+        />
     <android.support.design.widget.TabLayout
         app:tabMode="scrollable"
         android:id="@+id/tabs"
@@ -27,7 +40,7 @@
         android:layout_height="@dimen/dimen_100">
 
     </android.support.design.widget.TabLayout>
-
+    </FrameLayout>
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"

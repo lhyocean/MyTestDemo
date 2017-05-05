@@ -2,12 +2,14 @@ package com.beijing.ocean.multmediademo.adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 
 import com.beijing.ocean.multimediademo.R;
+import com.beijing.ocean.multmediademo.activity.ImagePagerActivity;
 import com.beijing.ocean.multmediademo.utils.ImageUtil;
 
 import java.util.ArrayList;
@@ -46,6 +48,7 @@ public class ImageAdapter extends PagerAdapter {
               if (datas!=null&&datas.get(position)!=null){
                   ImageUtil.loadHeadImgNet(datas.get(position),photoView);
               }
+              ViewCompat.setTransitionName(photoView, ImagePagerActivity.TRANSIT_PIC);
               container.addView(view,0);
 
           }

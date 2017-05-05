@@ -26,7 +26,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class CollapsingToolbarLayoutActivity extends AppCompatActivity implements View.OnClickListener, PaletteView.Callback,Handler.Callback {
+public class CollapsingToolbarLayoutActivity extends Activity implements View.OnClickListener, PaletteView.Callback,Handler.Callback {
 
     private View mUndoView;
     private View mRedoView;
@@ -134,14 +134,6 @@ public class CollapsingToolbarLayoutActivity extends AppCompatActivity implement
             }
         }
         return null;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-
-        }
-        return true;
     }
 
     @Override

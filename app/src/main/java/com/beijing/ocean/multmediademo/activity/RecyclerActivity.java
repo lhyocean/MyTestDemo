@@ -2,6 +2,7 @@ package com.beijing.ocean.multmediademo.activity;
 
 import android.app.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -150,6 +151,7 @@ public class RecyclerActivity extends Activity implements RecyclerGoodAdapter.It
                 List<String> urls=new ArrayList<>();
                 urls.add(bean.getGoodImg());
                 ImagePagerActivity.startAct(RecyclerActivity.this,urls,0,view);
+
             }
         }
     }

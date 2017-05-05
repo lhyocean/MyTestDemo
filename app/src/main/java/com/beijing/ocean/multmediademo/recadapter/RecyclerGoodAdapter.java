@@ -59,7 +59,7 @@ import java.util.List;
           if (mData!=null&&mData.get(position)!=null){
 
               GoodBean bean=mData.get(position);
-              holder.mLayout.setOnClickListener(new MyOnClickListener(holder.mLayout,position));
+              holder.mLayout.setOnClickListener(new MyOnClickListener(holder.itemView,position));
               holder.mTextView.setText(bean.getGoodDes()==null?"":bean.getGoodDes());
               if (bean.getGoodImg()!=null){
                   ImageUtil.loadHeadImgNet(bean.getGoodImg(),holder.img);
@@ -118,6 +118,7 @@ import java.util.List;
         mClickListener = clickListener;
     }
     class MyOnClickListener implements View.OnClickListener{
+        private View view;
         private LinearLayout mLayout;
         private int position;
 
@@ -126,10 +127,15 @@ import java.util.List;
             this.position = position;
         }
 
+        public MyOnClickListener(View view, int position) {
+            this.view = view;
+            this.position = position;
+        }
+
         @Override
         public void onClick(View v) {
             if (mClickListener!=null){
-                mClickListener.onItemClick(mLayout,position);
+                mClickListener.onItemClick(view,position);
             }
         }
     }

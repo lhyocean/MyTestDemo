@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
@@ -17,17 +18,19 @@ import com.beijing.ocean.multimediademo.R;
 import com.beijing.ocean.multmediademo.adapter.ImageAdapter;
 import com.beijing.ocean.multmediademo.utils.CheckUtils;
 import com.beijing.ocean.multmediademo.view.PhotoViewPager;
+import com.beijing.ocean.multmediademo.view.SwipeableLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 import  static com.beijing.ocean.multmediademo.utils.CheckUtils.checkNotNull;
 
 
-public class ImagePagerActivity extends Activity {
+public class ImagePagerActivity extends Activity implements SwipeableLayout.OnLayoutCloseListener {
 
     public static final String INTENT_IMGURLS = "imgurls";
     public static final String INTENT_POSITION = "position";
     public static final String TRANSIT_PIC = "picture";
+    public static final String PATH= "ImagePagerActivity";
 
 
     private List<View> guideViewList = new ArrayList<View>();
@@ -52,7 +55,7 @@ public class ImagePagerActivity extends Activity {
         intent.putStringArrayListExtra(INTENT_IMGURLS, new ArrayList<String>(imgUrls));
         intent.putExtra(INTENT_POSITION, position);
 
-        ActivityOptionsCompat compat=ActivityOptionsCompat.makeSceneTransitionAnimation(context,view,TRANSIT_PIC);
+        ActivityOptionsCompat compat=ActivityOptionsCompat.makeSceneTransitionAnimation(context, new Pair<>(view.findViewById(R.id.good_img),TRANSIT_PIC));
         try {
             ActivityCompat.startActivity(context, intent, compat.toBundle());
         } catch (IllegalArgumentException e) {
@@ -72,6 +75,10 @@ public class ImagePagerActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_image_pager);
 
+        SwipeableLayout swipeableLayout = (SwipeableLayout) findViewById(R.id.swipableLayout);
+
+
+        swipeableLayout.setOnLayoutCloseListener(this);
 
         LinearLayout llBack= (LinearLayout) findViewById(R.id.ll_back);
         llBack.setOnClickListener(new View.OnClickListener() {
@@ -131,5 +138,8 @@ public class ImagePagerActivity extends Activity {
     }
 
 
-
+    @Override
+    public void OnLayoutClosed() {
+        onBackPressed();
+    }
 }
