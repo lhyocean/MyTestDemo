@@ -31,7 +31,8 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
-    <style name="YourTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!--<style name="YourTheme" parent="Theme.AppCompat.Light.DarkActionBar" >-->
+    <style name="YourTheme" parent="Theme.AppCompat.Light.NoActionBar" >
 
         <item name="windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">true</item>
